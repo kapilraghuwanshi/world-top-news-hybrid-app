@@ -1,14 +1,271 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+<ion-header >
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> 
+
+  <ion-navbar color="tertiary"> 
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Operational Vitals</ion-title>
+    <ion-buttons end>  
+  <button ion-button icon-only block (click)="appLogout()">
+    <ion-icon name="contact"></ion-icon>
+  </button>
+    </ion-buttons>
   </ion-navbar>
+    
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background-color:#eaeded;" class="card-background-page"> 
+  <ion-grid> 
+      <ion-label class="dashboardStrip">Daily Dashboard</ion-label>
+      <ion-row style="padding-top:10px;">
+          <ion-col style="width:2px;float: left;">
+            <ion-label style="font-weight:bold;float:left;font-size:5 em;">Date</ion-label>
+          </ion-col>
+          <ion-col style="float:left;" >
+              <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" min="2015" 
+              [(ngModel)]="selectedDate" max="2018">
+              </ion-datetime>
+          </ion-col>
+          <ion-col >
+              <button ion-button outline item-end icon-left color="dark" small 
+              (click)="generateOnSelectedDate()">
+                <ion-icon name="checkmark"></ion-icon>
+                Generate
+              </button>
+          </ion-col>
+          <ion-col >
+              <button ion-button outline item-end icon-left color="dark" small>
+                <ion-icon name="refresh"></ion-icon>
+                Reset
+              </button>
+          </ion-col>
+      </ion-row>
+    
+      <div class="overallStatusStrip"> <b>Overall Status </b></div>     
+      
+     <ion-row style="width:100%;height:5px;margin:auto;margin-top:10px;margin-bottom: 20px;background-color: #C9C9C9">
+          
+          <ion-col class="Green" style="width:30px;background-color: #4CAF50">
+            <ion-col>
+              <div class="status-led" style="background-color: #4CAF50"></div>
+              <div *ngIf="overallStatus=='#4CAF50'">
+                <div class="status-led" style="background-color: #4CAF50 ;border:4px solid #4CAF50;margin-top:-38px;margin-right:-6px;width: 40px;height:40px; box-shadow: 3px 3px 5px 1px #888888;" ></div>        
+              </div>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="LightGreen" style="width:30px;background-color: #97D350">
+              <ion-col>
+                  <div class="status-led" style="background-color: #97D350"></div>
+                  <div *ngIf="overallStatus=='#AED581'">         
+                  <div class="status-led" style="background-color: #97D350 ;border:4px solid #97D350;margin-top:-38px;margin-right:-6px;width: 40px;height:40px; box-shadow: 3px 3px 5px 1px #888888;" ></div>        
+                  </div>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="Yellow" style="width:30px;background-color: #F9E21D">
+              <ion-col>
+                <div class="status-led" style="background-color: #F9E21D" ></div>
+                <div *ngIf="overallStatus=='#FFF176'">
+                <div class="status-led" style="background-color: #F9E21D ;border:4px solid #F9E21D;margin-top:-38px;margin-right:-5.1px;width: 40px;height:40px; box-shadow: 3px 3px 5px 1px #888888;" ></div>      
+                </div>
+            </ion-col>
+          </ion-col>
+
+          <ion-col class="Orange" style="width:30px;background-color: #FF9800">
+              <ion-col>
+                  <div class="status-led" style="background-color: #FF9800"></div>
+                  <div *ngIf="overallStatus=='#FF9800'">
+                    <div class="status-led" style="background-color: #FF9800 ;border:4px solid #FF9800;margin-top:-38px;margin-right:-6px;width: 40px;height:40px; box-shadow: 3px 3px 5px 1px #888888;" ></div>
+                  </div>
+              </ion-col>
+          </ion-col>
+              
+          <ion-col class="Orange" style="width:30px;background-color: #F44336">
+              <ion-col>
+                  <div class="status-led" style="background-color: #F44336"></div>
+                  <div *ngIf="overallStatus=='#F44336'">         
+                    <div class="status-led" style="background-color: #F44336 ;border:4px solid #F44336; margin-top:-38px;margin-right:-6px;width: 40px;height:40px; box-shadow: 3px 3px 5px 1px #888888;" ></div>
+                  </div>
+            </ion-col>
+          </ion-col>    
+      </ion-row>
+
+  </ion-grid>
+  
+  <!-- <ion-grid>
+    <div class="overallStatusStrip"> Total 36 KPIs are GREEN out of 42</div>
+  </ion-grid> -->
+
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="ion-card-home-Notif">
+            <ion-row>
+              <ion-col>
+                <div *ngIf="IPDRColor=='#FFFF00'">
+                  <div class="led-yellow" ></div>
+                </div> 
+                <div *ngIf="IPDRColor=='#00B050'">
+                  <div class="led-green" ></div>
+                </div>  
+                <div *ngIf="IPDRColor=='#FF0000'">
+                  <div class="led-red" ></div>
+                </div>
+              </ion-col>
+             </ion-row>
+            <div class="card-title">IPDR</div>  
+            <div class="card-subtitle"> 8 KPIs</div>
+             <ion-row> 
+              <ion-col>
+                <button class="left-page-button" (click)="openSysInfoModal({sysChar: 'IPDR', varChar: 'INFO', dateArg: dateArg})">
+                  <ion-icon name="information-circle"></ion-icon>
+                   Info </button>
+              </ion-col>
+              <ion-col> 
+                  <button class="right-page-button" (click)="pushKPIPage({sysChar: 'IPDR', varChar: 'KPI', dateArg: dateArg})">
+                   <ion-icon name="podium"></ion-icon>
+                   KPIs</button>
+              </ion-col>
+             </ion-row>
+         </ion-card>  
+        </ion-col>
+        <ion-col>
+          <ion-card class="ion-card-home-Notif">
+            <ion-row>
+              <ion-col>
+                <div *ngIf="EMMColor=='#FFFF00'">
+                  <div class="led-yellow" ></div>
+                </div> 
+                <div *ngIf="EMMColor=='#00B050'">
+                  <div class="led-green" ></div>
+                </div>  
+                <div *ngIf="EMMColor=='#FF0000'">
+                  <div class="led-red" ></div>
+                </div>
+              </ion-col>
+             </ion-row>
+            <div class="card-title">EMM</div>
+            <div class="card-subtitle"> 6 KPIs</div>
+            <ion-row> 
+              <ion-col>
+                <button class="left-page-button" (click)="openSysInfoModal({sysChar: 'EMM', varChar: 'INFO', dateArg: dateArg})">
+                  <ion-icon name="information-circle"></ion-icon>
+                   Info  </button>
+              </ion-col>
+              <ion-col>
+                <button class="right-page-button"  (click)="pushKPIPage({sysChar: 'EMM', varChar: 'KPI', dateArg: dateArg})">
+                   <ion-icon name="podium"></ion-icon>
+                   KPIs</button>
+              </ion-col>
+             </ion-row>
+         </ion-card>  
+        </ion-col>
+      </ion-row>
+
+       <ion-row>
+        <ion-col>
+          <ion-card class="ion-card-home-Notif">
+             <ion-row>
+              <ion-col>
+                <div *ngIf="NotifColor=='#FFFF00'">
+                  <div class="led-yellow" ></div>
+                </div> 
+                <div *ngIf="NotifColor=='#00B050'">
+                  <div class="led-green" ></div>
+                </div>  
+                <div *ngIf="NotifColor=='#FF0000'">
+                  <div class="led-red" ></div>
+                </div>
+              </ion-col>
+             </ion-row>
+            <div class="card-title">Notification</div>
+            <div class="card-subtitle"> 17 KPIs</div>
+            <ion-row> 
+              <ion-col>
+                <button class="left-page-button" (click)="openSysInfoModal({sysChar: 'Notification', varChar: 'INFO', dateArg: dateArg})">
+                  <ion-icon name="information-circle"></ion-icon>
+                   Info  </button>
+              </ion-col>
+              <ion-col>
+                <button class="right-page-button" (click)="pushKPIPage({sysChar: 'Notification', varChar: 'KPI', dateArg: dateArg})">
+                   <ion-icon name="podium"></ion-icon>
+                    KPIs</button>
+              </ion-col>
+             </ion-row>
+         </ion-card>  
+        </ion-col>
+
+        <ion-col>
+          <ion-card class="ion-card-home-Notif">
+              <ion-row>
+              <ion-col>
+                <div *ngIf="UserColor=='#FFFF00'">
+                  <div class="led-yellow" ></div>
+                </div> 
+                <div *ngIf="UserColor=='#00B050'">
+                  <div class="led-green" ></div>
+                </div>  
+                <div *ngIf="UserColor=='#FF0000'">
+                  <div class="led-red" ></div>
+                </div>
+              </ion-col>
+             </ion-row>
+            <div class="card-title">UserExp Billing</div>
+            <div class="card-subtitle"> 6 KPIs</div>
+            <ion-row> 
+              <ion-col>
+                <button class="left-page-button" (click)="openSysInfoModal({sysChar: 'UE', varChar: 'INFO', dateArg: dateArg})">
+                  <ion-icon name="information-circle"></ion-icon>
+                   Info  </button>
+              </ion-col>
+              <ion-col>
+                <button class="right-page-button" (click)="pushKPIPage({sysChar: 'UE', varChar: 'KPI', dateArg: dateArg})">
+                   <ion-icon name="podium"></ion-icon>
+                    KPIs</button>
+              </ion-col>
+             </ion-row>
+         </ion-card>  
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="ion-card-home-Notif">
+              <ion-row>
+              <ion-col>
+                <div *ngIf="OrderColor=='#FFFF00'">
+                  <div class="led-yellow" ></div>
+                </div> 
+                <div *ngIf="OrderColor=='#00B050'">
+                  <div class="led-green" ></div>
+                </div>  
+                <div *ngIf="OrderColor=='#FF0000'">
+                  <div class="led-red" ></div>
+                </div>
+              </ion-col>
+             </ion-row>
+            <div class="card-title">Order Management</div>
+            <div class="card-subtitle"> 5 KPIs</div>
+            <ion-row> 
+              <ion-col>
+                <button class="left-page-button" (click)="openSysInfoModal({sysChar: 'OM', varChar: 'INFO', dateArg: dateArg})">
+                  <ion-icon name="information-circle"></ion-icon>
+                   Info </button>
+              </ion-col>
+              <ion-col>
+                <button class="right-page-button" (click)="pushKPIPage({sysChar: 'OM', varChar: 'KPI', dateArg: dateArg})">
+                   <ion-icon name="podium"></ion-icon>
+                   KPIs </button>
+              </ion-col>
+             </ion-row>
+         </ion-card>    
+        </ion-col>
+      </ion-row>             
+
+  </ion-grid>
+
 </ion-content>

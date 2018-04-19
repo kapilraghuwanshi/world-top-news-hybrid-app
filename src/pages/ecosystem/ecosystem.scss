@@ -1,0 +1,263 @@
+page-ecosystem {
+
+.card-ecosystem-page {
+
+  .h1-style{
+    background: linear-gradient(-45deg,	#e6f2ff);
+    color:#000;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+
+  }
+
+  .page-grid {
+      position: relative;
+      top: 18px;
+      width: 92%;
+      box-shadow: 5px 5px 50px 5px #778899;
+      background: -webkit-linear-gradient(bottom left, #B4DDEC, #B4DDEC, #B4DDEC);  
+    }
+    
+  .ion-card-block {
+    width: 100%;
+    background-color: #004d4d;
+    height: 150px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 8px;
+    margin:auto;
+  }
+
+  .card-title-heading {
+    font-size: 1.2em;
+    text-align: center;
+    //font-weight: bold;
+    color: #FFF;
+    margin:auto;
+    text-align: center;
+  }   
+
+  .title-text {
+    font-size: 0.8em;
+    text-align: center;
+    //font-weight: bold;
+    color: #FFF;
+    margin:auto;
+    text-align: center;
+    padding-top: 10px;
+  } 
+
+  .card-title-IPDR {
+    height: 35px;
+    width: 50px;
+    color: #FFF;
+    background: #005ce6;
+    margin:auto;
+    padding-top: 5px;
+    border-radius: 0px;
+    display: inline-block;
+  }
+
+  .card-title-EMM {
+    height: 40px;
+    width: 65px;
+    color:#004d4d;
+    border-radius: 0px;
+    background: #005ce6;
+    display: inline-block;
+  }
+
+  .card-title-Notification {
+    height: 40px;
+    width: 65px;
+    color: #FFF;
+    border-radius: 0px;
+    margin-top: 25px;
+    font-size: 90%;
+    background: #005ce6;
+    display: inline-block;
+  }
+
+  .card-title-User {
+    height: 80%;
+    width: 60%;
+    color: #FFF;
+    border-radius: 0px;
+    background: #005ce6;
+    font-size: 100%;
+    display: inline-block;
+  }
+
+  .card-title-OM {
+    height: 35px;
+    width: 89px;
+    color: #FFF;
+    border-radius: 0px;
+    background: #005ce6;
+    display: inline-block;
+  }
+
+.element-block{
+  border:0px; 
+  border-color: #FFF ; 
+  border-style: solid;
+}
+
+.grad-backgroud {
+  //background: red; /* For browsers that do not support gradients */ /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: -moz-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: -o-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: linear-gradient(to top right, #008080, #008B8B, #00CED1); /* Standard syntax */
+}
+
+.grad-tiles {
+  background: red; /* For browsers that do not support gradients */ /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: -moz-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: -o-linear-gradient(bottom left, #008080, #008B8B, #00CED1);
+  background: linear-gradient(to top right, #008080, #008B8B, #00CED1); /* Standard syntax */
+}
+
+.connect-arrow{
+    font-size: 40px;
+    position: absolute;
+    top:  10%;
+    
+}
+
+.connect-arrow-system{
+    font-size: 40px;
+    position: absolute;
+    bottom: 10%;
+    left: 0%;
+}
+
+.w3-button{
+  border:none;
+  display:inline-block;
+  outline:0;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  word-wrap: initial;
+  width: 100%;
+  height: 70px;
+  box-shadow: 10px 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.w3-black,.w3-hover-black:hover{
+  color:#fff!important;
+  background-color:#000!important
+}
+
+.w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:100px;width:100%;height:100%;
+          overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
+
+.w3-modal-content{
+  margin:auto;
+  background: linear-gradient(-45deg,  #8F80AD,#8F80AD,#8F80AD);
+  //background-color:#fff;
+  position:relative;
+  padding:0;
+  outline:0;
+  width:90%
+}
+
+.w3-container:after,.w3-container:before{content:"";display:table;clear:both}
+
+.w3-display-topright{position:absolute;right:10px;top:0}
+
+.led-red-echosystem {
+  margin: 0 auto;
+  width: 28px;
+  height: 28px;
+  font-size: 15px;
+  padding-top: 4px;
+  text-align: center;
+  position: absolute;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  -webkit-animation: blinkRed 0.5s infinite;
+  -moz-animation: blinkRed 0.5s infinite;
+  -ms-animation: blinkRed 0.5s infinite;
+  -o-animation: blinkRed 0.5s infinite;
+  animation: blinkRed 0.5s infinite;
+}
+
+@-webkit-keyframes blinkRed {
+    from { background-color: #F00; }
+    50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+    to { background-color: #F00; }
+}
+@-moz-keyframes blinkRed {
+    from { background-color: #F00; }
+    50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+    to { background-color: #F00; }
+}
+@-ms-keyframes blinkRed {
+    from { background-color: #F00; }
+    50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+    to { background-color: #F00; }
+}
+@-o-keyframes blinkRed {
+    from { background-color: #F00; }
+    50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+    to { background-color: #F00; }
+}
+@keyframes blinkRed {
+    from { background-color: #F00; }
+    50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+    to { background-color: #F00; }
+}
+
+.led-yellow-echosystem {
+  margin: 0 auto;
+  width: 28px;
+  height: 28px;
+  font-size: 15px;
+  padding-top: 4px;
+  text-align: center;
+  position: absolute;
+  background-color: #FF0;
+  border-radius: 50%;
+  color :#000;
+}
+
+.led-green-echosystem {
+  margin: 0 auto;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  position: absolute;
+  background-color: #00e64d;
+  border-radius: 50%;
+  font-size: 15px;
+  padding-top: 4px;
+  color :#000;
+}
+
+.led-white-echosystem {
+  margin: 0 auto;
+  color :#000;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  position: absolute;
+  background-color: #cce6ff;
+  border-radius: 50%;
+  background-color: #cce6ff;
+  font-size: 15px;
+  padding-top: 4px;
+}
+
+}
+}

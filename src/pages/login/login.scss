@@ -1,0 +1,73 @@
+page-login {
+
+.card-background-login{
+
+  background: radial-gradient(0deg, #ffffff, #ffffff, #ffffff);
+
+  .page-background-login{
+    background: linear-gradient( 180deg, #0047b3, #cce6ff,#0047b3);
+    //background-color: #0fb8ad;
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+
+  ion-item {
+      margin-bottom: 10px;
+  }
+
+  .h1-style{
+    background: linear-gradient(-45deg,	#e6f2ff);
+    color:#fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+
+  }
+
+  .ion-grid-login {
+    position: static;
+    top: 20%;
+    width: 80%;
+    height: 35%;
+    align-items: center;
+    text-align: center;
+    box-shadow: 50px 5px 50px 5px #003366;
+    background: -webkit-linear-gradient(bottom left, #4d94ff, #4d94ff, #4d94ff);
+    background: -moz-linear-gradient(bottom left, #B3939F, #4d94ff, #B2788E);
+    background: -o-linear-gradient(bottom left, #4d94ff, #4d94ff, #4d94ff);
+    background: linear-gradient(to top right, #4d94ff, #4d94ff, #4d94ff); /* Standard syntax */
+      
+  }
+
+  .ion-row-login{
+    width: 100%;
+    height: 30%;
+    //margin-bottom: 1%;
+    //background: linear-gradient(-135deg,#0066ff,#4d94ff,#3385ff);
+    //box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  .button-login {
+    border-radius: 30px;
+    overflow: hidden;
+    height: 3.5rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #1E4FF5;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0.4rem 0.2rem;
+    padding: 0 1.1em;
+}
+
+}
+}

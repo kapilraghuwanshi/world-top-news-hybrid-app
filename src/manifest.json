@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "OpvApp",
+  "short_name": "OpvApp",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

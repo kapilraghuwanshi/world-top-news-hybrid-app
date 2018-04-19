@@ -1,1 +1,42 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+
+  <ion-header>
+    <!--<div style="background-image:url(assets/image/drawer_theme2.png); height:190px;">-->
+    <div style="background: linear-gradient(-45deg, #5656D3,#927CE6,#5656D3);">
+      <div style="font-size:25px; padding-top:30px; padding-left:45px;color:white;"> 
+        <b> Operational Vitals </b>
+      </div>
+      <div style="font-size:15px; padding-top:10px; padding-left:65px;color:white;"> 
+        Welcome OpvApp User! 
+      </div>
+      <div style="font-size:18px; padding-top:24px; padding-left:68px;color:white;"> 
+        Menu
+      </div>   
+    </div>
+  </ion-header>
+
+  <ion-content style="background-color: #E3E3E5; ">
+    <ion-list >
+      <button style="background-color: #E3E3E5;color:#5A53B6; font-size: 18px;" 
+            menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+         &nbsp;
+        <ion-icon name="ios-flame-outline" big> </ion-icon>
+        &nbsp; &nbsp; &nbsp;
+        {{p.title}}
+      </button>          
+    </ion-list>
+  </ion-content>
+
+  <ion-footer style="background: linear-gradient(-45deg, #5656D3,#927CE6,#5656D3) ;height:70px;">
+    <div style="font-size:15px; padding-top:18px; padding-left:100px;color:white;"> 
+      Version 1.0
+    </div>
+    <div style="font-size:15px; padding-top:5px; padding-left:55px;color:black;"> 
+     &copy; Tata Consultancy Services
+    </div>
+  </ion-footer>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
