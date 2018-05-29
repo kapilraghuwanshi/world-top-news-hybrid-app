@@ -1,0 +1,54 @@
+<ion-header>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <ion-navbar color="danger">
+    <ion-row>
+      <ion-col col-2 text-left>
+        <img src="https://png.icons8.com/color/40/000000/user-male.png" style="width:30px">
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-title>My Profile</ion-title>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" width="160px" height="160px">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-label>Name</ion-label>
+      <input type="text" [(ngModel)]=name>
+    </ion-row>
+    <ion-row>
+      <ion-label>Email</ion-label>
+      <input type="email" [(ngModel)]=name>
+    </ion-row>
+    <ion-row>
+      <ion-label>Phone</ion-label>
+      <input type="tel" [(ngModel)]=name>
+    </ion-row>
+    <ion-row>
+      <ion-label>Country</ion-label>
+      <input type="text" [(ngModel)]=name>
+    </ion-row>
+    <ion-row>
+      <ion-label>Language</ion-label>
+      <input type="text" [(ngModel)]=name>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <button (click)="SaveChangeMyProfile()" ion-button outline color="newsTheme"> Save Changes &nbsp;
+          <ion-icon name="save"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <ion-navbar color="danger">
+    <ion-row>
+      <ion-col col-2 text-left>
+        <img src="https://png.icons8.com/color/40/000000/europe-news.png" style="width:30px">
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-title>Choose Newspaper</ion-title>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
+      </ion-col>
+    </ion-row>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor='let paper of uniqueNewsSourcenames; let idx = index'>
+    <div (click)="pushNewsPaperPage({papername : paper, articleset : newsArticles})">
+      <div class="news-card-home" *ngIf='paper=="The Washington Post" '>
+        <img src={{washImage}}>
+        <div class="card-title">{{paper}}</div>
+      </div>
+      <div class="news-card-home" *ngIf='paper=="CNN" '>
+        <img src={{CNNImage}}>
+        <div class="card-title">{{paper}}</div>
+      </div>
+      <div class="news-card-home" *ngIf='paper=="The New York Times" '>
+        <img src={{newYorkImage}}>
+        <div class="card-title">{{paper}}</div>
+      </div>
+      <div class="news-card-home" *ngIf='paper!="The New York Times"
+       && paper!="The Washington Post" && paper!="CNN" '>
+        <img src={{baseImage}}>
+        <div class="card-title">{{paper}}</div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

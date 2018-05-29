@@ -4,73 +4,70 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
-import { DatePipe } from '@angular/common';
-import { RestApiServiceProvider } from '../providers/rest-api-service/rest-api-service';
+import { Network } from '@ionic-native/network';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Geolocation } from '@ionic-native/geolocation';
 
-import { OpvApp } from './app.component';
-import { LoginPage } from '../pages/login/login';
-import { HomePage, InfoModalPage, KPIPage } from '../pages/home/home';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+//import { AppRoutingModule } from './app-routing.module';
+//import { FirebaseApiServiceProvider } from '../providers/firebase-service/firebase-service';
+import { ApiServiceProvider } from '../providers/api-service/api-service';
+
+import { WorldTopNews } from './app.component';
+//import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
+import { ChooseNewsPaperPage } from '../pages/choose-news-paper/choose-news-paper';
+import { NewsPaperPage } from '../pages/news-paper/news-paper';
+import { ArticlePage } from '../pages/article/article';
+import { FavoritePage } from '../pages/favorite/favorite';
+import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { AboutUsPage } from '../pages/about_us/about_us';
-import { EcosystemPage } from '../pages/ecosystem/ecosystem';
-import { DoughnutChart } from '../ChartComponent/doughnutChart/doughnutChart';
-import { i3DoughnutChart } from '../ChartComponent/i3doughnutChart/i3doughnutChart';
-import { i6DoughnutChart } from '../ChartComponent/i6doughnutChart/i6doughnutChart';
-import { BillerDoughnutChart } from '../ChartComponent/billerDoughnutChart/billerDoughnutChart';
-import { BarChart } from '../ChartComponent/barChart/barChart';
-import { PieChart } from '../ChartComponent/pieChart/pieChart';
-import { StackBarChart } from '../ChartComponent/stackBarChart/stackBarChart';
-import { U2PieChart } from '../ChartComponent/u2PieChart/u2PieChart';
-import { MultiBarChart } from '../ChartComponent/multiBarChart/multiBarChart';
+import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyB-aeFaY4aOvDJwsbfzvas8h-rTLzrQz6c",
+  authDomain: "worldtopnews-29a42.firebaseapp.com",
+  databaseURL: "https://worldtopnews-29a42.firebaseio.com",
+  projectId: "worldtopnews-29a42",
+  storageBucket: "worldtopnews-29a42.appspot.com",
+  messagingSenderId: "1067875198851"
+};
 
 @NgModule({
   declarations: [
-    OpvApp,
-    HomePage,
-    InfoModalPage,
-    KPIPage,
-    EcosystemPage,
-    AboutUsPage,
-    DoughnutChart,
-    i3DoughnutChart,
-    i6DoughnutChart,
-    BillerDoughnutChart,
-    BarChart,
-    U2PieChart,
-    StackBarChart,
-    PieChart,
-    MultiBarChart,
-    LoginPage
+    WorldTopNews,
+    //LoginPage, 
+    TabsPage, HomePage, ChooseNewsPaperPage, NewsPaperPage, ArticlePage,
+    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(OpvApp)
+    IonicModule.forRoot(WorldTopNews),
+    //AngularFireModule.initializeApp(firebaseConfig),
+    // AppRoutingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    OpvApp,
-    HomePage,
-    InfoModalPage,
-    KPIPage,
-    EcosystemPage,
-    AboutUsPage,
-    DoughnutChart,
-    i3DoughnutChart,
-    i6DoughnutChart,
-    BillerDoughnutChart,
-    BarChart,
-    U2PieChart,
-    StackBarChart,
-    PieChart,
-    MultiBarChart,
-    LoginPage
+    WorldTopNews,
+    //LoginPage, 
+    TabsPage, HomePage, ChooseNewsPaperPage, NewsPaperPage, ArticlePage,
+    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestApiServiceProvider,
-    DatePipe
+    Network,
+    InAppBrowser,
+    SocialSharing,
+    Geolocation,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ApiServiceProvider,
+    //FirebaseApiServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

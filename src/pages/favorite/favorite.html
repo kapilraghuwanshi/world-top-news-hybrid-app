@@ -1,0 +1,34 @@
+<ion-header>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <ion-navbar color="danger">
+  <ion-row>
+    <ion-col col-2 text-left>
+      <img src="https://png.icons8.com/color/40/000000/likes-folder.png" style="width:30px">
+    </ion-col>
+    <ion-col col-8 text-center>
+      <ion-title>My Favorites</ion-title>
+    </ion-col>
+    <ion-col col-2 text-right>
+      <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
+    </ion-col>
+  </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngFor='let article of newsArticleSet; let idx = index;'>
+    <div class="news-card-home">
+      <div (click)="pushArticlePage({index : idx, newarticleset : newsArticleSet})">
+        <div class="container">
+          <img src={{article.urlToImage}} width="100%" height="180">
+          <div class="bottom-left">{{article.title}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:20px;margin-bottom: 20px;text-align: center;">
+    Your favorites will appear in next release!
+    <ion-icon name="hand"></ion-icon>
+  </div>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <ion-navbar color="danger">
+    <ion-row>
+      <ion-col col-2 text-left>
+        <img src="https://png.icons8.com/color/40/000000/globe.png" style="width:30px">
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-title>World Top News</ion-title>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center style="font-size:20px;">Oh! No internet connection found.</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button round outline color="newsTheme" (click)="RetryConnection()">Retry &nbsp;
+          <ion-icon name="wifi"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <img src="{{noInternetImage}}">
+    </ion-row>
+  </ion-grid>
+</ion-content>

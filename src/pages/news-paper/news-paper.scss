@@ -1,0 +1,79 @@
+page-news-paper {
+
+ .card-title {
+    font-family: 'Lucida Sans';
+  }
+
+.news-card-home{
+    width: 100%;
+    height: auto;
+    margin:auto;
+    position:relative;
+    display: block;
+    //background-image: url("../assets/image/basenews.png");
+  }
+
+img {
+    border-radius: 10%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.container {
+    position: relative;
+    padding : 6px;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 18px;
+    color:white;
+    font-size : 15px;
+    word-wrap:inherit;
+    text-align: center;
+}
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color:white;
+}
+
+.starFavorite {
+    position: absolute;
+    z-index: 1;
+    zoom: 2.1;   
+    padding-left: 1.5px; 
+}
+
+.shareButton {
+    position: absolute;
+    z-index: 1;
+    zoom: 2.1; 
+
+}
+
+.favCircle {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    color: #e13838;
+    background-color: #c8c7cc;
+    border-radius: 50%;
+    margin-top: -123px;
+    box-shadow: 0 8px 16px 0 rgba(129, 8, 8, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.shareCircle {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    color: #e13838;
+    background-color: #c8c7cc;
+    border-radius: 50%;
+    margin-top: -123px;
+    margin-left: 320px;
+    box-shadow: 0 8px 16px 0 rgba(129, 8, 8, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+}
