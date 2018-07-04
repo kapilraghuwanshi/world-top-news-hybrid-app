@@ -5,7 +5,7 @@ import {
 } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Network } from '@ionic-native/network';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeable-browser';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
 import { ChooseNewsPaperPage } from '../choose-news-paper/choose-news-paper';
@@ -21,11 +21,13 @@ export class HomePage {
   public newsData: any;
   public newsArticles: any;
   public footerImage = "assets/image/WebFooter.png";
+  public hindImageArr: [{image:""}] ;
+  public hindiDefaultImage = "HindiNewsDefault.jpg";
   public selectedLanguage: string = "English";
 
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public ApiService: ApiServiceProvider,
-    public navParams: NavParams, private inAppBrowse: InAppBrowser,
+    public navParams: NavParams, private inAppBrowse: ThemeableBrowser,
     public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing) {
 
     this.presentLoadingGif();
@@ -34,7 +36,7 @@ export class HomePage {
       .then(data => {
         this.newsData = data;
         console.log(this.newsData);
-        this.newsArticles = this.newsData.articles.slice(1, 15);
+        this.newsArticles = this.newsData.articles.slice(1, 16);
         console.log(this.newsArticles);
       })
 
@@ -44,26 +46,32 @@ export class HomePage {
   chooseLanguage() {
     console.log("You have chosen :- " + this.selectedLanguage);
 
-    if (this.selectedLanguage == "English") {
+    if (this.selectedLanguage === "English") {
       this.presentLoadingGif();
+      console.log("if English");
       this.ApiService.getNewsSlideshowEnglish()
         .then(data => {
           this.newsData = data;
           console.log(this.newsData);
-          this.newsArticles = this.newsData.articles.slice(1, 15);
+          this.newsArticles = this.newsData.articles.slice(1, 16);
           console.log(this.newsArticles);
         })
     }
-    else {
+    else if (this.selectedLanguage === "Hindi") {
       this.presentLoadingGifHindi();
-
+      console.log("if Hindi");
       this.ApiService.getNewsSlideshowHindi()
         .then(data => {
           this.newsData = data;
           console.log(this.newsData);
-          this.newsArticles = this.newsData.posts.slice(1, 15);;
+          this.newsArticles = this.newsData.posts.slice(1, 16);
           console.log(this.newsArticles);
-          console.log(this.newsArticles.thread.title);
+
+          for (let i = 0; i < 15 ; i++) {
+            this.hindImageArr[i].image = this.newsArticles[i].thread.main_image;
+          }
+          console.log(this.hindImageArr);
+
         })
     }
 
@@ -72,8 +80,30 @@ export class HomePage {
 
   // open in app browser method
   openLinkInAppBrowser(idx) {
-    const myBroswer = this.inAppBrowse.create(this.newsArticles[idx].url);
-    myBroswer.insertCSS({ code: " navbar {color: red;}" });
+    const options: ThemeableBrowserOptions = {
+      statusbar: {
+        color: '#f53d3d'
+      },
+      toolbar: {
+        height: 44,
+        color: '#f53d3d'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: true,
+        staticText: 'World Top News'
+      },
+      closeButton: {
+        image: 'assets/image/web.png',
+        align: 'right',
+        event: 'closePressed'
+      }
+    };
+
+    const myBroswer = this.inAppBrowse.create(this.newsArticles[idx].url, '_blank', options);
+    myBroswer.on('closePressed').subscribe(data => {
+      myBroswer.close();
+    })
 
   }
 
@@ -123,7 +153,7 @@ export class HomePage {
           <div>
            Preparing Hindi News bulletins for you..
           </div>`,
-      duration: 3500
+      duration: 5500
     });
     loading.present();
   }

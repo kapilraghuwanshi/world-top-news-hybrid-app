@@ -21,18 +21,13 @@ export class NoInternetFoundPage {
   }
 
   RetryConnection() {
-
-    // for internet disconnect
-    this.netwrk.onDisconnect()
-      .subscribe(() => {
-        console.log('network was disconnected');
-        this.presentLoadingGif();
-      });
+    console.log('inside RetryConnection when network was disconnected');
+    this.presentLoadingGif();
 
     // for internet Connect
     this.netwrk.onConnect()
       .subscribe(() => {
-        console.log('inside RetryConnectio - network is connected');
+        console.log('inside RetryConnection - network is connected');
         this.navCtrl.setRoot(HomePage);
       });
   }

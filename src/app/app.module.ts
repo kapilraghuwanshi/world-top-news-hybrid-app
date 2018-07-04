@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -27,6 +27,8 @@ import { FavoritePage } from '../pages/favorite/favorite';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { AboutUsPage } from '../pages/about_us/about_us';
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
+import { IonicStorageModule } from '@ionic/storage';
+import { FormsModule } from '@angular/forms';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB-aeFaY4aOvDJwsbfzvas8h-rTLzrQz6c",
@@ -47,7 +49,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(WorldTopNews),
+    IonicModule.forRoot(WorldTopNews), IonicStorageModule.forRoot(), FormsModule,
     //AngularFireModule.initializeApp(firebaseConfig),
     // AppRoutingModule
   ],
@@ -59,12 +61,8 @@ export const firebaseConfig = {
     FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    Network,
-    InAppBrowser,
-    SocialSharing,
-    Geolocation,
+    StatusBar,SplashScreen,Network,ThemeableBrowser,
+    SocialSharing,Geolocation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiServiceProvider,
     //FirebaseApiServiceProvider

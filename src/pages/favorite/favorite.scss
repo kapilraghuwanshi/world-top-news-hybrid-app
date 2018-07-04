@@ -1,3 +1,36 @@
 page-favorite {
 
+ .card-title {
+    font-family: 'Lucida Sans';
+  }
+
+.news-card-home{
+    width: 100%;
+    height: auto;
+    margin:auto;
+    position:relative;
+    display: block;
+    //background-image: url("../assets/image/basenews.png");
+  }
+
+img {
+    border-radius: 10%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.container {
+    position: relative;
+    padding : 6px;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 18px;
+    color:wheat;
+    font-size : 16px;
+    font-weight: bolder;
+    word-wrap:inherit;
+    text-align: center;
+}
+
 }

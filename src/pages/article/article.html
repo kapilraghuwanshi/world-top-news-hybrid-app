@@ -32,7 +32,7 @@
             <b>{{articlePublishedAt | date}}</b>
           </ion-col>
           <ion-col col-4 text-center>
-            <button ion-button icon-only color="light" (click)="openLinkInAppBrowser(idx)" clear>
+            <button ion-button icon-only color="light" (click)="openLinkInAppBrowser()" clear>
               <ion-icon style="zoom:1.5;color:#d62537" name="link" icon-left></ion-icon>
             </button>
           </ion-col>
@@ -40,13 +40,18 @@
       </ion-grid>
     </ion-row>
   </ion-grid>
-  <!-- Sharing Icons -->
+  <!-- Star marked and Sharing Icons -->
   <ion-grid class="share-grid">
     <ion-row>
       <ion-col>
-        <button ion-button icon-only (click)="saveBookmarksArticles()" color="newsTheme" clear>
-          <ion-icon name="star-outline"></ion-icon>
-        </button>
+        <ion-buttons end>
+          <button ion-button icon-only *ngIf="isFavorite" (click)="selectUnfavoriteArticle()"  color="newsTheme" clear>
+            <ion-icon name="star"></ion-icon>
+          </button>
+          <button ion-button icon-only  *ngIf="!isFavorite" (click)="selectFavoriteArticle()" color="newsTheme" clear>
+            <ion-icon name="star-outline"></ion-icon>
+          </button>
+        </ion-buttons>
       </ion-col>
       <ion-col>
         <button ion-button icon-only (click)="regularShare()" color="newsTheme" clear>

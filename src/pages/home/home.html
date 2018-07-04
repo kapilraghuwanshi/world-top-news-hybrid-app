@@ -24,7 +24,7 @@
 
   <ion-grid>
     <!-- Dropdown language Row-->
-    <ion-row>
+    <!-- <ion-row>
       <ion-col text-right>
         <ion-label>Select Language</ion-label>
       </ion-col>
@@ -34,7 +34,7 @@
           <ion-option value="Hindi">Hindi</ion-option>
         </ion-select>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <!-- Title Row-->
     <ion-row class="card-title">
       <ion-col text-center>
@@ -82,7 +82,7 @@
     <div *ngIf="selectedLanguage=='Hindi'">
       <ion-row>
         <ion-slides *ngIf="newsArticles && newsArticles.length" pager="true" autoplay="3000" loop="true" speed="100">
-          <ion-slide *ngFor="let bulletin of newsArticles; let idx = index;" style="margin-bottom:150px;">
+          <ion-slide *ngFor="let bulletin of newsArticles; let idx = index; let imge of hindImageArr;" style="margin-bottom:150px;">
             <div class="shareCircle">
               <div class="shareButton">
                 <button ion-button icon-only (click)="regularShare(idx)" clear>
@@ -92,17 +92,17 @@
             </div>
             <div style="border-radius:18px;background-color: #b99494;">
               <ion-row>
-                 <img src={{bulletin.thread.main_image}}>
+                <img src={{imge.image}}>
               </ion-row>
               <ion-row style="font-size:15px;">
-                <ion-col text-center>{{bulletin.thread.title}}</ion-col>
+                <ion-col text-center>{{bulletin.title}}</ion-col>
               </ion-row>
               <ion-row>
                 <ion-col style="font-size:15px;" col-4 text-center>
-                  <b>{{bulletin.thread.site}}</b>
+                  <b>{{bulletin.author}}</b>
                 </ion-col>
                 <ion-col style="font-size:15px;" col-4 text-center>
-                  <b>{{bulletin.thread.published | date}}</b>
+                  <b>{{bulletin.published | date}}</b>
                 </ion-col>
                 <ion-col col-4 text-center>
                   <button ion-button icon-only color="newsTheme" (click)="openLinkInAppBrowser(idx)" clear>

@@ -16,7 +16,7 @@
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="26" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="StatusBarOverlayWebView" value="true">
+    <preference name="StatusBarOverlayWebView" value="true" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="true" />
     <preference name="SplashScreen" value="screen" />
@@ -24,7 +24,7 @@
     <preference name="SplashScreenDelay" value="4000" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <preference name="Fullscreen" value="true">
+        <preference name="Fullscreen" value="true" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -101,4 +101,10 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="cordova-plugin-themeablebrowser" spec="^0.2.17" />
+    <plugin name="cordova-plugin-camera" spec="^2.4.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
+    </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
 </widget>

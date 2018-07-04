@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import {
   NavController, Platform, ActionSheetController, NavParams, LoadingController, IonicPage
 } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeable-browser';
 //library for social-sharing
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AboutUsPage } from '../about_us/about_us';
+import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
 
 @IonicPage()
@@ -23,11 +24,13 @@ export class ArticlePage {
   public articlePublishedAt: string;
   public articleDescription: string;
   public authorImage = "assets/image/Web.png";
+  public articleDetail: any;
+  public isFavorite = false;
 
   constructor(
     public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-    public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: InAppBrowser,
-    private shareService: SocialSharing) {
+    public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: ThemeableBrowser,
+    private shareService: SocialSharing, public apiServ: ApiServiceProvider) {
     this.newsArticleSet = this.navParams.get('newarticleset');
     console.log(this.newsArticleSet);
     console.log(this.navParams.get('index'));
@@ -41,23 +44,67 @@ export class ArticlePage {
     console.log(this.articlePublishedAt);
     this.articleDescription = this.newsArticleSet[this.navParams.get('index')].description;
     console.log(this.articleDescription);
-
     this.articleUrl = this.newsArticleSet[this.navParams.get('index')].url;
     console.log(this.articleUrl);
 
-    //const browser = this.inAppBrowse.create(this.articleUrl);
+    this.articleDetail = {
+      author: this.articleAuthor, urlToImage: this.articleImage, title: this.articleTitle, url: this.articleUrl,
+      publishedAt: this.articlePublishedAt, description: this.articleDescription
+    };
 
+    //check clicked article is already favorite or not
+    this.apiServ.isFavorite(this.articleDetail).then(isFav => {
+      console.log("isFav args " + this.articleDetail);
+      this.isFavorite = isFav;
+    })
 
+  }
 
+  //select and make it favourite
+  selectFavoriteArticle() {
+    console.log(this.articleDetail);
+    this.apiServ.favoriteArticle(this.articleDetail).then(() => {
+      this.isFavorite = true;
+    });
+  }
+
+  //select and unfavorite it
+  selectUnfavoriteArticle() {
+    console.log(this.articleDetail);
+    this.apiServ.unfavoriteArticle(this.articleDetail).then(() => {
+      this.isFavorite = false;
+    });
   }
 
   // open in app browser method
   openLinkInAppBrowser() {
-    const myBroswer = this.inAppBrowse.create(this.articleUrl);
+    const options: ThemeableBrowserOptions = {
+      statusbar: {
+        color: '#f53d3d'
+      },
+      toolbar: {
+        height: 44,
+        color: '#f53d3d'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: true,
+        staticText: 'World Top News'
+      },
+      closeButton: {
+        image: 'assets/image/close.png',
+        align: 'right',
+        event: 'closePressed'
+      }
+    };
 
-    myBroswer.insertCSS({ code: "body {color: red;}" });
+    const myBroswer = this.inAppBrowse.create(this.articleUrl, '_blank', options);
+    myBroswer.on('closePressed').subscribe(data => {
+      myBroswer.close();
+    })
 
   }
+
 
   // Share Message
   compilemsg(): string {
