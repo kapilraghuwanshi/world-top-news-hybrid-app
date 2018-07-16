@@ -41,7 +41,7 @@ export class FavoritePage {
 
   // method to push to ArticlePage
   pushArticlePage(index, newarticleset) {
-    this.presentLoadingGif();
+    //this.presentLoadingGif();
     console.log("newarticleset in favoritePage - " + newarticleset);
     this.navCtrl.push(ArticlePage, index, newarticleset);
   }

@@ -18,6 +18,7 @@ export class NewsPaperPage {
   public articleImage: string;
   public articleTitle: string;
   public newsArticleSet = [] ;
+  public baseImage = "assets/image/basenews.png";
 
   constructor(public navCtrl: NavController, public platform: Platform,public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController)

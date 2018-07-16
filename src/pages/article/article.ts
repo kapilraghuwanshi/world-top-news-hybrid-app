@@ -30,21 +30,26 @@ export class ArticlePage {
   constructor(
     public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: ThemeableBrowser,
-    private shareService: SocialSharing, public apiServ: ApiServiceProvider) 
-    {
+    private shareService: SocialSharing, public apiServ: ApiServiceProvider) {
     this.newsArticleSet = this.navParams.get('newarticleset');
     console.log(this.newsArticleSet);
     console.log(this.navParams.get('index'));
     this.articleAuthor = this.newsArticleSet[this.navParams.get('index')].author;
-   // console.log(this.articleAuthor);
+    if (this.articleAuthor == null)
+      this.articleAuthor = "Not Available";
+    console.log(this.articleAuthor);
     this.articleImage = this.newsArticleSet[this.navParams.get('index')].urlToImage;
-   // console.log(this.articleImage);
+    if (this.articleImage == null)
+      this.articleImage = "assets/image/basenews.png";
+    console.log(this.articleImage);
     this.articleTitle = this.newsArticleSet[this.navParams.get('index')].title;
     //console.log(this.articleTitle);
     this.articlePublishedAt = this.newsArticleSet[this.navParams.get('index')].publishedAt;
     //console.log(this.articlePublishedAt);
     this.articleDescription = this.newsArticleSet[this.navParams.get('index')].description;
-    //console.log(this.articleDescription);
+    if (this.articleDescription == null)
+      this.articleDescription = "Description is not available right now. Click on the Source Link above. Be updated!";
+    console.log(this.articleDescription);
     this.articleUrl = this.newsArticleSet[this.navParams.get('index')].url;
     console.log(this.articleUrl);
 
@@ -110,7 +115,7 @@ export class ArticlePage {
   // Share Message
   compilemsg(): string {
     var msg = this.articleTitle;
-    return msg.concat("\n \n - Shared via My World Top News App Feed! \n \n");
+    return msg.concat("\n \n - Shared via My World Top News App Feed https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

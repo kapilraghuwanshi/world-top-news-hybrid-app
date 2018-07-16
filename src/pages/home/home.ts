@@ -23,6 +23,7 @@ export class HomePage {
   public footerImage = "assets/image/WebFooter.png";
   public hindImageArr: [{image:""}] ;
   public hindiDefaultImage = "HindiNewsDefault.jpg";
+  public baseImage = "assets/image/basenews.png";
   public selectedLanguage: string = "English";
 
   constructor(public navCtrl: NavController, public platform: Platform,
@@ -125,7 +126,7 @@ export class HomePage {
   compilemsg(idx): string {
     var msg = this.newsArticles[idx].title;
     console.log(msg);
-    return msg.concat("\n \n - Shared via My World Top News App Feed! \n \n");
+    return msg.concat("\n \n - Shared via My World Top News App Feed https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

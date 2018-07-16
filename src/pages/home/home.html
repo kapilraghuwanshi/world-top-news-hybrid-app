@@ -55,7 +55,12 @@
             </div>
             <div style="border-radius:18px;background-color: #b99494;">
               <ion-row>
-                <img src={{bulletin.urlToImage}}>
+                <div *ngIf="bulletin.urlToImage">
+                  <img src={{bulletin.urlToImage}}>
+                </div>
+                <div *ngIf="!bulletin.urlToImage">
+                  <img src={{baseImage}}>
+                </div>
               </ion-row>
               <ion-row style="font-size:15px;" text-center>
                 <div>{{bulletin.title}}</div>
@@ -106,7 +111,7 @@
                 </ion-col>
                 <ion-col col-4 text-center>
                   <button ion-button icon-only color="newsTheme" (click)="openLinkInAppBrowser(idx)" clear>
-                    <ion-icon style="zoom:1.7;" name="link" icon-left></ion-icon>
+                    <ion-icon style="zoom:1.3;color:#d62537" name="paper-plane" icon-left></ion-icon>
                   </button>
                 </ion-col>
               </ion-row>

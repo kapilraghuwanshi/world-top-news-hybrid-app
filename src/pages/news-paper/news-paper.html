@@ -19,7 +19,12 @@
     <div class="news-card-home">
       <div (click)="pushArticlePage({index : idx, newarticleset : newsArticleSet})">
         <div class="container">
-          <img src={{article.urlToImage}} width="100%" height="180">
+          <div *ngIf="article.urlToImage">
+            <img src={{article.urlToImage}} width="100%" height="180">
+          </div>
+          <div *ngIf="!article.urlToImage">
+            <img src={{baseImage}} width="100%" height="180">
+          </div>
           <div class="bottom-left">{{article.title}}</div>
         </div>
       </div>
