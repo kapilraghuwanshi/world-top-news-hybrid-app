@@ -30,20 +30,21 @@ export class ArticlePage {
   constructor(
     public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: ThemeableBrowser,
-    private shareService: SocialSharing, public apiServ: ApiServiceProvider) {
+    private shareService: SocialSharing, public apiServ: ApiServiceProvider) 
+    {
     this.newsArticleSet = this.navParams.get('newarticleset');
     console.log(this.newsArticleSet);
     console.log(this.navParams.get('index'));
     this.articleAuthor = this.newsArticleSet[this.navParams.get('index')].author;
-    console.log(this.articleAuthor);
+   // console.log(this.articleAuthor);
     this.articleImage = this.newsArticleSet[this.navParams.get('index')].urlToImage;
-    console.log(this.articleImage);
+   // console.log(this.articleImage);
     this.articleTitle = this.newsArticleSet[this.navParams.get('index')].title;
-    console.log(this.articleTitle);
+    //console.log(this.articleTitle);
     this.articlePublishedAt = this.newsArticleSet[this.navParams.get('index')].publishedAt;
-    console.log(this.articlePublishedAt);
+    //console.log(this.articlePublishedAt);
     this.articleDescription = this.newsArticleSet[this.navParams.get('index')].description;
-    console.log(this.articleDescription);
+    //console.log(this.articleDescription);
     this.articleUrl = this.newsArticleSet[this.navParams.get('index')].url;
     console.log(this.articleUrl);
 
@@ -54,7 +55,7 @@ export class ArticlePage {
 
     //check clicked article is already favorite or not
     this.apiServ.isFavorite(this.articleDetail).then(isFav => {
-      console.log("isFav args " + this.articleDetail);
+      console.log("isFav checking in articlePage " + this.articleDetail);
       this.isFavorite = isFav;
     })
 

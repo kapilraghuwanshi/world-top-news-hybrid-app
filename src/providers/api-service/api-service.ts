@@ -54,17 +54,17 @@ export class ApiServiceProvider {
     });
   }
   
-  //Add to Favourite 
   //Get All stored favorites
   getAllFavoriteArticles() {
+    console.log("stored items " + this.storage.get(STORAGE_KEY));
     return this.storage.get(STORAGE_KEY);
   }
 
   //Check data is favourite or not - return true/false
   isFavorite(articleDetail) {
-    console.log(" isFavorite articleDetail - " + articleDetail);
+    console.log(" isFavorite articleDetail in api - " + articleDetail);
     return this.getAllFavoriteArticles().then(result => {
-      console.log("isFavorite result " + result);
+      console.log("isFavorite result in api " + result);
       return result && result.findIndex(loc => loc.title === articleDetail.title && loc.url === articleDetail.url) !== -1;
     });
   }
@@ -72,7 +72,7 @@ export class ApiServiceProvider {
   //Add to Favourite object in local storage
   favoriteArticle(articleDetail) {
     return this.getAllFavoriteArticles().then(result => {
-      console.log("favorite " + result);
+      console.log("favorite in api " + result);
       if (result) {
         result.push(articleDetail);
         return this.storage.set(STORAGE_KEY, result);
@@ -86,7 +86,7 @@ export class ApiServiceProvider {
   //Remove from favorite object in local storage
   unfavoriteArticle(articleDetail) {
     return this.getAllFavoriteArticles().then(result => {
-      console.log("unfavorite " + result);
+      console.log("unfavorite in api" + result);
       if (result) {
         var index = result.findIndex(loc => loc.title === articleDetail.title && loc.url === articleDetail.url);
         console.log("index unfavorite " + index);

@@ -23,17 +23,17 @@ export class NewsPaperPage {
     public navParams: NavParams, public loadingCtrl: LoadingController)
     {
     this.paperName = this.navParams.get('papername');
-    console.log(this.paperName);
+   // console.log(this.paperName);
     this.articleSet = this.navParams.get('articleset');
-    console.log(this.articleSet);
+   // console.log("articleSet in newspaper page - " +this.articleSet);
 
     for (let i = 0; i < this.articleSet.length; i++) {
       if ((this.paperName).localeCompare(this.articleSet[i].source.name) == 0) {
-        console.log("index " + i + " and obj name is " + this.articleSet[i].source.name);
+        //console.log("index " + i + " and obj name is " + this.articleSet[i].source.name);
         this.newsArticleSet.push(this.articleSet[i]);
       }
     }
-    console.log(this.newsArticleSet);
+    //console.log(this.newsArticleSet);
   }
 
   // method to create pushArticlePage

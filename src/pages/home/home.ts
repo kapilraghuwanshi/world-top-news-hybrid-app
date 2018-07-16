@@ -35,7 +35,7 @@ export class HomePage {
     this.ApiService.getNewsSlideshowEnglish()
       .then(data => {
         this.newsData = data;
-        console.log(this.newsData);
+        //console.log(this.newsData);
         this.newsArticles = this.newsData.articles.slice(1, 16);
         console.log(this.newsArticles);
       })
@@ -52,7 +52,7 @@ export class HomePage {
       this.ApiService.getNewsSlideshowEnglish()
         .then(data => {
           this.newsData = data;
-          console.log(this.newsData);
+          //console.log(this.newsData);
           this.newsArticles = this.newsData.articles.slice(1, 16);
           console.log(this.newsArticles);
         })
@@ -139,7 +139,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Preparing latest News bulletins for you..
+           Preparing latest News bulletins for you.. Hang tight!
           </div>`,
       duration: 3500
     });

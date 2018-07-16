@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 import { Network } from '@ionic-native/network';
 
 @IonicPage()
@@ -28,7 +28,7 @@ export class NoInternetFoundPage {
     this.netwrk.onConnect()
       .subscribe(() => {
         console.log('inside RetryConnection - network is connected');
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(TabsPage);
       });
   }
   // method to show Loading..
@@ -36,9 +36,9 @@ export class NoInternetFoundPage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Let's see internet arrived!
+           Let's see internet arrived! Turn On data.
           </div>`,
-      duration: 1500
+      duration: 2000
     });
     loading.present();
   }

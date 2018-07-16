@@ -13,38 +13,37 @@ import { ApiServiceProvider } from '../../providers/api-service/api-service';
 })
 export class FavoritePage {
 
-  public articleSet: any;
-  public paperName: string;
-  public articleAuthor: string;
-  public articleImage: string;
-  public articleTitle: string;
-  public newsArticleSet = [];
   public articleDetails: any;
   public isFavorite = false;
+  private favArticleCount: number = 0;
 
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public apiServ: ApiServiceProvider,
-    public navParams: NavParams, public loadingCtrl: LoadingController) 
-    {
-    this.paperName = this.navParams.get('papername');
-    console.log(this.paperName);
-    this.articleSet = this.navParams.get('articleset');
-    console.log(this.articleSet);
+    public navParams: NavParams, public loadingCtrl: LoadingController) {
 
+  }
+
+  //on entry to this page everytime
+  ionViewWillEnter() {
+    console.log("inside of ionViewWillEnter");
     //Fetch out all favourites logos stored in the SQLite
     this.apiServ.getAllFavoriteArticles()
       .then(data => {
         this.articleDetails = data;
-        console.log("Fav articleDetails " + this.articleDetails);
+        if (this.articleDetails)
+          this.favArticleCount = this.articleDetails.length;
+        else
+          this.favArticleCount = 0;
+        console.log(this.favArticleCount);
+        console.log("Fav ArticleDetails on launch of favoritePage " + this.articleDetails);
       });
-
   }
 
   // method to push to ArticlePage
-  pushArticlePage(index, articleDetailsSet) {
-    //this.presentLoadingGif();
-    console.log("articleDetailsSet - " + articleDetailsSet);
-    this.navCtrl.push(ArticlePage, index, articleDetailsSet);
+  pushArticlePage(index, newarticleset) {
+    this.presentLoadingGif();
+    console.log("newarticleset in favoritePage - " + newarticleset);
+    this.navCtrl.push(ArticlePage, index, newarticleset);
   }
 
   // method to show Loading..
@@ -52,7 +51,7 @@ export class FavoritePage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Just Near to youe  your fav article...
+           Fetching your favorite articles...
           </div>`,
       duration: 1500
     });
@@ -60,7 +59,7 @@ export class FavoritePage {
   }
 
   // static method to log Out
-  appArticleut() {
+  appLogout() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'My Profile',
       cssClass: 'action-sheets-basic-page',
@@ -72,7 +71,7 @@ export class FavoritePage {
           }
         },
         {
-          text: 'Articleut',
+          text: 'Logout',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

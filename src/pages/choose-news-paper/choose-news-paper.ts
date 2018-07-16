@@ -23,6 +23,14 @@ export class ChooseNewsPaperPage {
   public washImage = "assets/image/washingonPost.jpg";
   public CNNImage = "assets/image/CNN.png";
   public newYorkImage = "assets/image/TheNewYorkTimes.png";
+  public ABCImage = "assets/image/AbcLogo.png";
+  public NBCImage = "assets/image/NBC.png";
+  public USATodayImage = "assets/image/USAToday.jpg";
+  public CBSImage = "assets/image/CBS.jpg";
+  public FoxNewsImage = "assets/image/FoxNews.png";
+  public YahooImage = "assets/image/Yahoo.png";
+  public ReutersImage = "assets/image/Reuters.jpg";
+  public NYDailyNewsImage = "assets/image/NYDailyNews.png";
   public baseImage = "assets/image/basenews.png";
 
   constructor(public navCtrl: NavController, public platform: Platform,
@@ -32,7 +40,6 @@ export class ChooseNewsPaperPage {
     //console.log("Inside HomePage");
 
     this.presentLoadingGif();
-    this.checkInternet();
 
     this.ApiService.getNewsData()
       .then(data => {
@@ -55,32 +62,6 @@ export class ChooseNewsPaperPage {
   pushNewsPaperPage(papername, articleset) {
     this.presentLoadingGif();
     this.navCtrl.push(NewsPaperPage, papername, articleset);
-  }
-
-  //method to check internet connection
-  checkInternet() {
-    let disconnectSubscription = this.netwrk.onDisconnect()
-      .subscribe(() => {
-        console.log('network was disconnected');
-        let alert = this.alertCtrl.create({
-          title: 'Network was disconnected :-(',
-          subTitle: 'Please check your connection and try again',
-          buttons: ['OK']
-        });
-        alert.present();
-      });
-
-    let connectSubscription = this.netwrk.onConnect()
-      .subscribe(() => {
-        console.log('network is connected');
-        let alert = this.alertCtrl.create({
-          title: 'Hurray!!',
-          subTitle: 'Network is connected! Enjoy the App!',
-          buttons: ['OK']
-        });
-        alert.present();
-      });
-
   }
 
   // method to show Loading..
