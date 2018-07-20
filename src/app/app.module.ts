@@ -8,6 +8,7 @@ import { Network } from '@ionic-native/network';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geolocation } from '@ionic-native/geolocation';
+import { MyFilterPipe } from '../pipes/my-filter/my-filter';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -44,7 +45,7 @@ export const firebaseConfig = {
     WorldTopNews,
     //LoginPage, 
     TabsPage, HomePage, ChooseNewsPaperPage, NewsPaperPage, ArticlePage,
-    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
+    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, MyFilterPipe
   ],
   imports: [
     BrowserModule,

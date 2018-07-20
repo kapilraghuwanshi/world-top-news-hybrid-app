@@ -21,7 +21,7 @@
       <div class="news-card-home">
         <div (click)="pushArticlePage({index : idx, newarticleset : articleDetails})">
           <div class="container">
-            <img src={{favArticle.urlToImage}} width="100%" height="180">
+            <img class="shadowImage" src={{favArticle.urlToImage}} width="100%" height="180">
             <div class="bottom-left">{{favArticle.title}}</div>
           </div>
         </div>
@@ -35,7 +35,7 @@
   </div>
   <div *ngIf='favArticleCount == 0 ;' style="margin-top:20px;margin-bottom: 20px;text-align: center;">
     You've no Favorites selected so far. Please hit
-    <b> the stars</b> <ion-icon name="star-half"></ion-icon> whenever you read the articles!
+    <b> stars</b> <ion-icon name="star-half"></ion-icon> whenever you read the articles!
     
   </div>
 </ion-content>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="raghuwanshi.kapil.WorldTopNews" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>WorldTopNews</name>
-    <description>Once place to know the world. An awesome hybrid News app.</description>
+    <description>One place to know the world! An awesome hybrid News app!</description>
     <author email="kapil.raghuwanshi5@gmail.com" href="https://about.me/kapilraghuwanshi">
     Kapil Raghuwanshi</author>
     <content src="index.html" />
@@ -16,6 +16,8 @@
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="26" />
     <preference name="BackupWebStorage" value="none" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="red" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="AutoHideSplashScreen" value="true" />

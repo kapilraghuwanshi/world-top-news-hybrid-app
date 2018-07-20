@@ -35,7 +35,7 @@ export class ArticlePage {
     console.log(this.newsArticleSet);
     console.log(this.navParams.get('index'));
     this.articleAuthor = this.newsArticleSet[this.navParams.get('index')].author;
-    if (this.articleAuthor == null)
+    if (this.articleAuthor == null || this.articleAuthor == "")
       this.articleAuthor = "Not Available";
     console.log(this.articleAuthor);
     this.articleImage = this.newsArticleSet[this.navParams.get('index')].urlToImage;
@@ -115,7 +115,7 @@ export class ArticlePage {
   // Share Message
   compilemsg(): string {
     var msg = this.articleTitle;
-    return msg.concat("\n \n - Shared via My World Top News App Feed https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via My World Top News App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

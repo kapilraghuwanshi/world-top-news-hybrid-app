@@ -10,6 +10,7 @@ import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
 import { ChooseNewsPaperPage } from '../choose-news-paper/choose-news-paper';
 import { AboutUsPage } from '../about_us/about_us';
+import { MyFilterPipe } from '../../pipes/my-filter/my-filter';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +22,7 @@ export class HomePage {
   public newsData: any;
   public newsArticles: any;
   public footerImage = "assets/image/WebFooter.png";
-  public hindImageArr: [{image:""}] ;
+  public hindImageArr: [{ image: "" }];
   public hindiDefaultImage = "HindiNewsDefault.jpg";
   public baseImage = "assets/image/basenews.png";
   public selectedLanguage: string = "English";
@@ -68,7 +69,7 @@ export class HomePage {
           this.newsArticles = this.newsData.posts.slice(1, 16);
           console.log(this.newsArticles);
 
-          for (let i = 0; i < 15 ; i++) {
+          for (let i = 0; i < 15; i++) {
             this.hindImageArr[i].image = this.newsArticles[i].thread.main_image;
           }
           console.log(this.hindImageArr);
@@ -126,7 +127,7 @@ export class HomePage {
   compilemsg(idx): string {
     var msg = this.newsArticles[idx].title;
     console.log(msg);
-    return msg.concat("\n \n - Shared via My World Top News App Feed https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via My World Top News App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

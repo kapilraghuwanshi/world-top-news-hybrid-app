@@ -44,7 +44,7 @@
     <!-- English SlideShow Row-->
     <div *ngIf="selectedLanguage=='English'">
       <ion-row>
-        <ion-slides *ngIf="newsArticles && newsArticles.length" pager="true" autoplay="3000" loop="true" speed="100">
+        <ion-slides *ngIf="newsArticles && newsArticles.length" pager="true" autoplay="3500" loop="true" speed="100">
           <ion-slide *ngFor="let bulletin of newsArticles; let idx = index;" style="margin-bottom:150px;">
             <div class="shareCircle">
               <div class="shareButton">
@@ -67,14 +67,14 @@
               </ion-row>
               <ion-row>
                 <ion-col style="font-size:15px;" col-4 text-center>
-                  <b>{{bulletin.source.name}}</b>
+                  <b>{{bulletin.source.name | myFilterPipe}}</b>
                 </ion-col>
                 <ion-col style="font-size:15px;" col-4 text-center>
                   <b>{{bulletin.publishedAt | date}}</b>
                 </ion-col>
                 <ion-col col-4 text-center>
                   <button ion-button icon-only color="newsTheme" (click)="openLinkInAppBrowser(idx)" clear>
-                    <ion-icon style="zoom:1.7;" name="link" icon-left></ion-icon>
+                    <ion-icon style="zoom:1.5;" name="paper-plane" icon-left></ion-icon>
                   </button>
                 </ion-col>
               </ion-row>

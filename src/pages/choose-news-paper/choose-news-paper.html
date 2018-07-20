@@ -17,54 +17,54 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor='let paper of uniqueNewsSourcenames; let idx = index'>
+  <div *ngFor='let paper of uniqueNewsSourcenames; let idx = index;'>
     <div (click)="pushNewsPaperPage({papername : paper, articleset : newsArticles})">
       <div class="news-card-home" *ngIf='paper=="The Washington Post" '>
         <img src={{washImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="CNN" '>
         <img src={{CNNImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="The New York Times" '>
         <img src={{newYorkImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="USA Today" '>
         <img src={{USATodayImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="ABC News" '>
         <img src={{ABCImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="NBC News" '>
         <img src={{NBCImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="CBS News" '>
         <img src={{CBSImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="Fox News" '>
         <img src={{FoxNewsImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="Reuters" '>
         <img src={{ReutersImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper=="Yahoo.com" '>
         <img src={{YahooImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper!="The New York Times"
        && paper!="The Washington Post" && paper!="CNN" && paper!="USA Today" && paper!="NBC News" 
        && paper!="ABC News"  && paper!="CBS News"  && paper!="Fox News"  && paper!="Reuters"  
        && paper!="Yahoo.com" '>
         <img src={{baseImage}}>
-        <div class="card-title">{{paper}}</div>
+        <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
     </div>
   </div>
