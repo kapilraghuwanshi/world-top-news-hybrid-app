@@ -17,23 +17,23 @@ export class NewsPaperPage {
   public articleAuthor: string;
   public articleImage: string;
   public articleTitle: string;
-  public newsArticleSet = [] ;
+  public newsArticleSet = [];
   public baseImage = "assets/image/basenews.png";
 
-  constructor(public navCtrl: NavController, public platform: Platform,public actionsheetCtrl: ActionSheetController,
+  constructor(public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController)
     {
-    this.paperName = this.navParams.get('papername');
-   // console.log(this.paperName);
-    this.articleSet = this.navParams.get('articleset');
-   // console.log("articleSet in newspaper page - " +this.articleSet);
+    this.paperName = this.navParams.get('categoryArg');
+    //console.log(this.paperName);
+    this.articleSet = this.navParams.get('newsArticles');
+    //console.log("articleSet in newspaper page - " + this.articleSet);
 
-    for (let i = 0; i < this.articleSet.length; i++) {
-      if ((this.paperName).localeCompare(this.articleSet[i].source.name) == 0) {
-        //console.log("index " + i + " and obj name is " + this.articleSet[i].source.name);
-        this.newsArticleSet.push(this.articleSet[i]);
-      }
-    }
+    // for (let i = 0; i < this.articleSet.length; i++) {
+    //   if ((this.paperName).localeCompare(this.articleSet[i].source.name) == 0) {
+    //     //console.log("index " + i + " and obj name is " + this.articleSet[i].source.name);
+    //     this.newsArticleSet.push(this.articleSet[i]);
+    //   }
+    // }
     //console.log(this.newsArticleSet);
   }
 
@@ -44,7 +44,7 @@ export class NewsPaperPage {
   }
 
   // method to save faovrite as bookmarks
-  saveArticle(){
+  saveArticle() {
     console.log("Saving");
   }
 

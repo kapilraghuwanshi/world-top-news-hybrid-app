@@ -6,6 +6,7 @@ import {
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Network } from '@ionic-native/network';
 import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeable-browser';
+import { Geolocation } from '@ionic-native/geolocation';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
 import { ChooseNewsPaperPage } from '../choose-news-paper/choose-news-paper';
@@ -22,63 +23,94 @@ export class HomePage {
   public newsData: any;
   public newsArticles: any;
   public footerImage = "assets/image/WebFooter.png";
-  public hindImageArr: [{ image: "" }];
-  public hindiDefaultImage = "HindiNewsDefault.jpg";
+  //public hindImageArr: [{ image: "" }];
+  //public hindiDefaultImage = "HindiNewsDefault.jpg";
   public baseImage = "assets/image/basenews.png";
   public selectedLanguage: string = "English";
+  public lati: any;
+  public longi: any;
+  public selectedCountry: string = "in";
 
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public ApiService: ApiServiceProvider,
     public navParams: NavParams, private inAppBrowse: ThemeableBrowser,
-    public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing) {
+    public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing,
+    public geo: Geolocation) {
+
+    this.allowGeoLocation();
 
     this.presentLoadingGif();
-
-    this.ApiService.getNewsSlideshowEnglish()
+    let defaultCountryArg = "in";
+    this.ApiService.getNewsDataByCountry(defaultCountryArg)
       .then(data => {
         this.newsData = data;
         //console.log(this.newsData);
-        this.newsArticles = this.newsData.articles.slice(1, 16);
+        this.newsArticles = this.newsData.articles;
         console.log(this.newsArticles);
+      }).catch(err => console.log(err));
+
+  }
+
+  //Geo Location
+  allowGeoLocation() {
+    console.log("Inside allowGeoLocation");
+    this.geo.getCurrentPosition()
+      .then(posi => {
+        this.lati = posi.coords.latitude;
+        this.longi = posi.coords.longitude;
+        console.log(this.lati + " & " + this.longi);
       })
-
+      .catch(err => console.log(err));
   }
 
-  // selected language
-  chooseLanguage() {
-    console.log("You have chosen :- " + this.selectedLanguage);
-
-    if (this.selectedLanguage === "English") {
-      this.presentLoadingGif();
-      console.log("if English");
-      this.ApiService.getNewsSlideshowEnglish()
-        .then(data => {
-          this.newsData = data;
-          //console.log(this.newsData);
-          this.newsArticles = this.newsData.articles.slice(1, 16);
-          console.log(this.newsArticles);
-        })
-    }
-    else if (this.selectedLanguage === "Hindi") {
-      this.presentLoadingGifHindi();
-      console.log("if Hindi");
-      this.ApiService.getNewsSlideshowHindi()
-        .then(data => {
-          this.newsData = data;
-          console.log(this.newsData);
-          this.newsArticles = this.newsData.posts.slice(1, 16);
-          console.log(this.newsArticles);
-
-          for (let i = 0; i < 15; i++) {
-            this.hindImageArr[i].image = this.newsArticles[i].thread.main_image;
-          }
-          console.log(this.hindImageArr);
-
-        })
-    }
-
-
+  // select countries from dropdown
+  chooseCountries() {
+    this.presentLoadingGif();
+    console.log("You have chosen:- " + this.selectedCountry);
+    this.ApiService.getNewsDataByCountry(this.selectedCountry)
+      .then(data => {
+        this.newsData = data;
+        //console.log(this.newsData);
+        this.newsArticles = this.newsData.articles;
+        //console.log(this.newsArticles);
+      }).catch(err => console.log(err));
   }
+
+  // select language
+  /*  chooseLanguage() {
+     console.log("You have chosen :- " + this.selectedLanguage);
+
+     if (this.selectedLanguage === "English") {
+       this.presentLoadingGif();
+       console.log("if English");
+       this.ApiService.getNewsSlideshowEnglish()
+         .then(data => {
+           this.newsData = data;
+           //console.log(this.newsData);
+           this.newsArticles = this.newsData.articles.slice(1, 16);
+           console.log(this.newsArticles);
+         })
+     }
+     else if (this.selectedLanguage === "Hindi") {
+       this.presentLoadingGifHindi();
+       console.log("if Hindi");
+       this.ApiService.getNewsSlideshowHindi()
+         .then(data => {
+           this.newsData = data;
+           console.log(this.newsData);
+           this.newsArticles = this.newsData.posts.slice(1, 16);
+           console.log(this.newsArticles);
+
+           for (let i = 0; i < 15; i++) {
+             this.hindImageArr[i].image = this.newsArticles[i].thread.main_image;
+           }
+           console.log(this.hindImageArr);
+
+         })
+     }
+
+
+   } */
 
   // open in app browser method
   openLinkInAppBrowser(idx) {
@@ -127,7 +159,7 @@ export class HomePage {
   compilemsg(idx): string {
     var msg = this.newsArticles[idx].title;
     console.log(msg);
-    return msg.concat("\n \n - Shared via My World Top News App https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via World Top News Hybrid App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

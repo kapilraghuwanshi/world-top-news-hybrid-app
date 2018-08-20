@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="raghuwanshi.kapil.WorldTopNews" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="raghuwanshi.kapil.WorldTopNews" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>WorldTopNews</name>
     <description>One place to know the world! An awesome hybrid News app!</description>
     <author email="kapil.raghuwanshi5@gmail.com" href="https://about.me/kapilraghuwanshi">
@@ -103,4 +103,6 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.0" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.2.4" />
+    <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
 </widget>

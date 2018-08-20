@@ -6,16 +6,151 @@
         <img src="https://png.icons8.com/color/40/000000/europe-news.png" style="width:30px">
       </ion-col>
       <ion-col col-8 text-center>
-        <ion-title>Choose Newspaper</ion-title>
+        <ion-title>Choose Publisher</ion-title>
       </ion-col>
       <ion-col col-2 text-right (click)="appLogout()">
         <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
       </ion-col>
     </ion-row>
-
   </ion-navbar>
 </ion-header>
 
+<ion-content padding>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col text-center>
+        Check-out the exclusive hand-picked publishers for you!
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('al-jazeera-english')">
+        <img src="{{AlJazeera}}">
+        <div class="card-title">Al-Jazeera</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('australian-financial-review')">
+        <img src="{{AustralianFinancial}}">
+        <div class="card-title">Australian Financial</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('business-insider')">
+        <img src="{{BusinessInsider}}">
+        <div class="card-title">Business Insider</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('bloomberg')">
+        <img src="{{Bloomberg}}">
+        <div class="card-title">Bloomberg</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('bbc-news')">
+        <img src="{{BBC}}">
+        <div class="card-title">BBC</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('cnn')">
+        <img src="{{CNN}}">
+        <div class="card-title">CNN</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('cnbc')">
+        <img src="{{CNBC}}">
+        <div class="card-title">CNBC</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('espn')">
+        <img src="{{ESPN}}">
+        <div class="card-title">ESPN</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('entertainment-weekly')">
+        <img src="{{EntertainmentWeekly}}">
+        <div class="card-title">Entertainment Weekly</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('financial-post')">
+        <img src="{{FinancialPost}}">
+        <div class="card-title">Financial Post</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('fox-news')">
+        <img src="{{FoxNews}}">
+        <div class="card-title">Fox News</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('national-geographic')">
+        <img src="{{NationalGeographic}}">
+        <div class="card-title">National Geographic</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('news24')">
+        <img src="{{News24}}">
+        <div class="card-title">News24</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('techcrunch')">
+        <img src="{{TechCrunch}}">
+        <div class="card-title">TechCrunch</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('reuters')">
+        <img src="{{Reuters}}">
+        <div class="card-title">Reuters</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-hindu')">
+        <img src="{{Hindu}}">
+        <div class="card-title">The Hindu</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-huffington-post')">
+        <img src="{{TheHuffingtonPost}}">
+        <div class="card-title">The Huffington Post</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-new-york-times')">
+        <img src="{{TheNewYorkTimes}}">
+        <div class="card-title">The New York Times</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-times-of-india')">
+        <img src="{{TheTimesofIndia}}">
+        <div class="card-title">The Times of India</div>
+      </ion-col>
+
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-wall-street-journal')">
+        <img src="{{TheWallStreetJournal}}">
+        <div class="card-title">The Wall Street Journal</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-economist')">
+        <img src="{{TheEconomist}}">
+        <div class="card-title">The Economist</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('time')">
+        <img src="{{Time}}">
+        <div class="card-title">Time</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('the-washington-post')">
+        <img src="{{WashingtonPost}}">
+        <div class="card-title">The Washington Post</div>
+      </ion-col>
+      <ion-col col-4 class="publisher-card" (click)="openNewsPublisher('usa-today')">
+        <img src="{{USAToday}}">
+        <div class="card-title">USA Today</div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+
+<!--
 <ion-content>
   <div *ngFor='let paper of uniqueNewsSourcenames; let idx = index;'>
     <div (click)="pushNewsPaperPage({papername : paper, articleset : newsArticles})">
@@ -60,13 +195,12 @@
         <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
       <div class="news-card-home" *ngIf='paper!="The New York Times"
-       && paper!="The Washington Post" && paper!="CNN" && paper!="USA Today" && paper!="NBC News" 
-       && paper!="ABC News"  && paper!="CBS News"  && paper!="Fox News"  && paper!="Reuters"  
+       && paper!="The Washington Post" && paper!="CNN" && paper!="USA Today" && paper!="NBC News"
+       && paper!="ABC News"  && paper!="CBS News"  && paper!="Fox News"  && paper!="Reuters"
        && paper!="Yahoo.com" '>
         <img src={{baseImage}}>
         <div class="card-title">{{paper| myFilterPipe}}</div>
       </div>
     </div>
   </div>
-
-</ion-content>
+</ion-content> -->

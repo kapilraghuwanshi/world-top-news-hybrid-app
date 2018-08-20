@@ -23,6 +23,7 @@
   </ion-refresher>
 
   <ion-grid>
+
     <!-- Dropdown language Row-->
     <!-- <ion-row>
       <ion-col text-right>
@@ -35,16 +36,42 @@
         </ion-select>
       </ion-col>
     </ion-row> -->
+
     <!-- Title Row-->
     <ion-row class="card-title">
       <ion-col text-center>
-        Get glimpse of Top 15 bulletins of now!
+        Get glimpse of Top bulletins of now!
       </ion-col>
     </ion-row>
+
+    <!-- Select Country -->
+    <ion-row>
+      <ion-col col-6 text-right>
+        <ion-label>Select Country</ion-label>
+      </ion-col>
+      <ion-col col-6>
+        <ion-select [(ngModel)]="selectedCountry" (ionChange)="chooseCountries()" okText="Choose" cancelText="Dismiss">
+          <ion-option value="in" selected="true">India</ion-option>
+          <ion-option value="us">United States</ion-option>
+          <ion-option value="au">Australia</ion-option>
+          <ion-option value="br">Brazil</ion-option>
+          <ion-option value="ca">Canada</ion-option>
+          <ion-option value="cn">China</ion-option>
+          <ion-option value="fr">France</ion-option>
+          <ion-option value="de">Germany</ion-option>
+          <ion-option value="jp">Japan</ion-option>
+          <ion-option value="ru">Russia</ion-option>
+          <ion-option value="za">South Africa</ion-option>
+          <ion-option value="gb">United Kingdom</ion-option>
+          <ion-option value="ae">United Arab Emirates</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
     <!-- English SlideShow Row-->
     <div *ngIf="selectedLanguage=='English'">
       <ion-row>
-        <ion-slides *ngIf="newsArticles && newsArticles.length" pager="true" autoplay="3500" loop="true" speed="100">
+        <ion-slides *ngIf="newsArticles && newsArticles.length" pager="false" autoplay="3500" loop="true" speed="100">
           <ion-slide *ngFor="let bulletin of newsArticles; let idx = index;" style="margin-bottom:150px;">
             <div class="shareCircle">
               <div class="shareButton">
@@ -62,15 +89,12 @@
                   <img src={{baseImage}}>
                 </div>
               </ion-row>
-              <ion-row style="font-size:15px;" text-center>
-                <div>{{bulletin.title}}</div>
-              </ion-row>
               <ion-row>
                 <ion-col style="font-size:15px;" col-4 text-center>
-                  <b>{{bulletin.source.name | myFilterPipe}}</b>
+                  {{bulletin.source.name | myFilterPipe}}
                 </ion-col>
                 <ion-col style="font-size:15px;" col-4 text-center>
-                  <b>{{bulletin.publishedAt | date}}</b>
+                  {{bulletin.publishedAt | date}}
                 </ion-col>
                 <ion-col col-4 text-center>
                   <button ion-button icon-only color="newsTheme" (click)="openLinkInAppBrowser(idx)" clear>
@@ -78,13 +102,22 @@
                   </button>
                 </ion-col>
               </ion-row>
+              <ion-row style="font-size:15px;background-color:#d2bfbf;" text-center>
+                <div>
+                  <b>{{bulletin.title}}</b>
+                </div>
+              </ion-row>
+              <ion-row style="font-size:13px;background-color:#d2bfbf;height:93px;" text-center>
+                <div>{{bulletin.description}}</div>
+              </ion-row>
             </div>
           </ion-slide>
         </ion-slides>
       </ion-row>
     </div>
+
     <!-- Hindi SlideShow Row-->
-    <div *ngIf="selectedLanguage=='Hindi'">
+    <!-- <div *ngIf="selectedLanguage=='Hindi'">
       <ion-row>
         <ion-slides *ngIf="newsArticles && newsArticles.length" pager="true" autoplay="3000" loop="true" speed="100">
           <ion-slide *ngFor="let bulletin of newsArticles; let idx = index; let imge of hindImageArr;" style="margin-bottom:150px;">
@@ -119,18 +152,27 @@
           </ion-slide>
         </ion-slides>
       </ion-row>
-    </div>
+    </div> -->
+
     <!--Redirect Button Row-->
-    <ion-row>
+    <!-- <ion-row>
       <ion-col text-center>
         <button (click)="skipGoToHome()" ion-button outline> Full Coverage &nbsp;
           <ion-icon style="zoom:2;" name="images"></ion-icon>
         </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
+
     <!--Footer Image Row-->
-    <ion-row style="margin-top: -120px;">
-      <img src="{{footerImage}}">
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button outline>
+          < Swipe left & right >
+        </button>
+      </ion-col>
+
+      <!-- <img src="{{footerImage}}"> -->
     </ion-row>
+
   </ion-grid>
 </ion-content>

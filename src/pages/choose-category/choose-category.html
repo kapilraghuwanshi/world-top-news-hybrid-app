@@ -1,0 +1,54 @@
+<ion-header>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <ion-navbar color="danger">
+    <ion-row>
+      <ion-col col-2 text-left>
+        <img src="https://png.icons8.com/dusk/40/000000/medium-priority.png" style="width:30px">
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-title>Choose Category</ion-title>
+      </ion-col>
+      <ion-col col-2 text-right (click)="appLogout()">
+        <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col text-center>
+        Pick your category & dive into the ocean of news!
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="category-card" (click)="openCategory('business')">
+        <img src="{{Business_Image}}">
+      </ion-col>
+      <ion-col class="category-card" (click)="openCategory('health')">
+        <img src="{{Health_Image}}">
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col class="category-card" (click)="openCategory('sports')">
+        <img src="{{Sports_Image}}">
+      </ion-col>
+      <ion-col class="category-card" (click)="openCategory('technology')">
+        <img src="{{Technology_Image}}">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="category-card" (click)="openCategory('entertainment')">
+        <img src="{{ArtsEntertainment_Image}}">
+      </ion-col>
+      <ion-col class="category-card" (click)="openCategory('science')">
+        <img src="{{Science_Image}}">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

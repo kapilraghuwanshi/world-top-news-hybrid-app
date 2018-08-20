@@ -3,12 +3,15 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geolocation } from '@ionic-native/geolocation';
-import { MyFilterPipe } from '../pipes/my-filter/my-filter';
+import { IonicStorageModule } from '@ionic/storage';
+import { Vibration } from '@ionic-native/vibration';
+import { FCM } from '@ionic-native/fcm';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -22,14 +25,14 @@ import { WorldTopNews } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { ChooseNewsPaperPage } from '../pages/choose-news-paper/choose-news-paper';
+import { ChooseCategoryPage } from '../pages/choose-category/choose-category';
 import { NewsPaperPage } from '../pages/news-paper/news-paper';
 import { ArticlePage } from '../pages/article/article';
 import { FavoritePage } from '../pages/favorite/favorite';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { AboutUsPage } from '../pages/about_us/about_us';
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
-import { IonicStorageModule } from '@ionic/storage';
-import { FormsModule } from '@angular/forms';
+import { MyFilterPipe } from '../pipes/my-filter/my-filter';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB-aeFaY4aOvDJwsbfzvas8h-rTLzrQz6c",
@@ -44,13 +47,13 @@ export const firebaseConfig = {
   declarations: [
     WorldTopNews,
     //LoginPage, 
-    TabsPage, HomePage, ChooseNewsPaperPage, NewsPaperPage, ArticlePage,
+    TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
     FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, MyFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(WorldTopNews), IonicStorageModule.forRoot(), FormsModule,
+    IonicModule.forRoot(WorldTopNews), IonicStorageModule.forRoot(), FormsModule
     //AngularFireModule.initializeApp(firebaseConfig),
     // AppRoutingModule
   ],
@@ -58,12 +61,12 @@ export const firebaseConfig = {
   entryComponents: [
     WorldTopNews,
     //LoginPage, 
-    TabsPage, HomePage, ChooseNewsPaperPage, NewsPaperPage, ArticlePage,
+    TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
     FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
   ],
   providers: [
-    StatusBar,SplashScreen,Network,ThemeableBrowser,
-    SocialSharing,Geolocation,
+    StatusBar, SplashScreen, Network, ThemeableBrowser,
+    SocialSharing, Vibration, Geolocation, FCM,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiServiceProvider,
     //FirebaseApiServiceProvider

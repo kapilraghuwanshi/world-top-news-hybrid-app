@@ -9,16 +9,16 @@ const STORAGE_KEY = 'favoriteNewsArticles';
 export class ApiServiceProvider {
 
   public infoData: any;
-  public newsURL: string = 'https://newsapi.org/v2/top-headlines?' + 'country=us&' + 'apiKey=e9052d3beea84071b88f4f55e12f9fe1';
+  public newsURL: string = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=e9052d3beea84071b88f4f55e12f9fe1';
   public webNewsURL: string = 'http://webhose.io/filterWebContent?token=9159484a-6975-4496-be07-f1aa516d9a89&format=json&sort=crawled&q=news%20language%3Ahindi';
   public newsData: any;
 
-  constructor(public http: Http, private storage : Storage) {
+  constructor(public http: Http, private storage: Storage) {
     console.log('Inside ApiServiceProvider');
   }
 
-  //for choose newspaper and furthur page data
-  getNewsData() {
+  //for home page slideshow if selected English
+  getNewsSlideshowEnglish() {
     return new Promise(resolve => {
       this.http.get(this.newsURL)
         .map(resp => resp.json())
@@ -29,10 +29,34 @@ export class ApiServiceProvider {
     });
   }
 
-  //for home page slideshow if selected English
-  getNewsSlideshowEnglish() {
+  //for choose countries and furthur page data
+  getNewsDataByCountry(countryArg) {
     return new Promise(resolve => {
-      this.http.get(this.newsURL)
+      this.http.get('https://newsapi.org/v2/top-headlines?country=' + countryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
+        .map(resp => resp.json())
+        .subscribe(tempdata => {
+          this.newsData = tempdata;
+          resolve(this.newsData);
+        });
+    });
+  }
+
+  //for choose countries and furthur page data
+  getNewsDataByCategory(categoryArg) {
+    return new Promise(resolve => {
+      this.http.get('https://newsapi.org/v2/top-headlines?country=us&category=' + categoryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
+        .map(resp => resp.json())
+        .subscribe(tempdata => {
+          this.newsData = tempdata;
+          resolve(this.newsData);
+        });
+    });
+  }
+
+  //for choose publishers and furthur page data
+  getNewsDataByPublisher(publisherArg) {
+    return new Promise(resolve => {
+      this.http.get('https://newsapi.org/v2/top-headlines?sources=' + publisherArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
         .map(resp => resp.json())
         .subscribe(tempdata => {
           this.newsData = tempdata;
@@ -53,7 +77,7 @@ export class ApiServiceProvider {
         });
     });
   }
-  
+
   //Get All stored favorites
   getAllFavoriteArticles() {
     console.log("stored items " + this.storage.get(STORAGE_KEY));
@@ -94,8 +118,8 @@ export class ApiServiceProvider {
         return this.storage.set(STORAGE_KEY, result);
       }
     });
-  
-  
+
+
   }
 
-} 
+}

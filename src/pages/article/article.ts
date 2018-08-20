@@ -5,6 +5,7 @@ import {
 import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeable-browser';
 //library for social-sharing
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Vibration } from '@ionic-native/vibration';
 import { AboutUsPage } from '../about_us/about_us';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
@@ -30,7 +31,7 @@ export class ArticlePage {
   constructor(
     public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: ThemeableBrowser,
-    private shareService: SocialSharing, public apiServ: ApiServiceProvider) {
+    private shareService: SocialSharing, private vibration: Vibration, public apiServ: ApiServiceProvider) {
     this.newsArticleSet = this.navParams.get('newarticleset');
     console.log(this.newsArticleSet);
     console.log(this.navParams.get('index'));
@@ -69,6 +70,7 @@ export class ArticlePage {
   //select and make it favourite
   selectFavoriteArticle() {
     console.log(this.articleDetail);
+    this.vibration.vibrate(1000);
     this.apiServ.favoriteArticle(this.articleDetail).then(() => {
       this.isFavorite = true;
     });
@@ -77,6 +79,7 @@ export class ArticlePage {
   //select and unfavorite it
   selectUnfavoriteArticle() {
     console.log(this.articleDetail);
+    this.vibration.vibrate(1000);
     this.apiServ.unfavoriteArticle(this.articleDetail).then(() => {
       this.isFavorite = false;
     });
@@ -115,7 +118,7 @@ export class ArticlePage {
   // Share Message
   compilemsg(): string {
     var msg = this.articleTitle;
-    return msg.concat("\n \n - Shared via My World Top News App https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via World Top News Hybrid App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles

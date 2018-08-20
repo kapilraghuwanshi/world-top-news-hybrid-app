@@ -1,7 +1,7 @@
 <ion-header>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <ion-navbar color="danger">
-    <ion-title>{{paperName}}</ion-title>
+    <ion-title style="text-transform: capitalize">{{paperName}} News</ion-title>
     <ion-buttons end>
       <button ion-button icon-only block (click)="appLogout()">
         <img src="https://png.icons8.com/color/40/000000/user-male-circle.png" style="width:32px">
@@ -12,12 +12,12 @@
 
 <ion-content>
   <ion-row class="card-title">
-    <ion-col text-center>Click on the most catching articles!</ion-col>
+    <ion-col text-center>Click on the eye-catching articles!</ion-col>
   </ion-row>
 
-  <div *ngFor='let article of newsArticleSet; let idx = index;'>
+  <div *ngFor='let article of articleSet; let idx = index;'>
     <div class="news-card-home">
-      <div (click)="pushArticlePage({index : idx, newarticleset : newsArticleSet})">
+      <div (click)="pushArticlePage({index : idx, newarticleset : articleSet})">
         <div class="container">
           <div *ngIf="article.urlToImage">
             <img class="shadowImage" src={{article.urlToImage}} width="100%" height="180">
@@ -40,9 +40,9 @@
       </div> -->
     </div>
   </div>
-  <div style="margin-top:20px;margin-bottom: 20px;text-align: center;">
+  <div style="margin-top:20px;margin-bottom: 20px;text-align: center; text-transform: capitalize;"F>
     That's all folks from
-    <b>{{paperName}}!</b>
+    <b>{{paperName}} Section!</b>
     <ion-icon name="hand"></ion-icon>
   </div>
 </ion-content>

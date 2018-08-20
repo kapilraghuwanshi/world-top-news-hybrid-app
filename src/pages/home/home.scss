@@ -2,7 +2,7 @@ page-home {
 
  .card-title {
     font-size: 15px;
-    font-family: 'Lucida Sans';
+    font-family: 'Verdana';
   }
 
 .select-text {
@@ -11,7 +11,7 @@ page-home {
 
 .swiper-slide img {
     width: 100%;
-    height: 200px;
+    height: 195px;
   }
 
 .button-outline-md {
@@ -25,17 +25,17 @@ img {
 }
 
 .swiper-container {
-    height:400px;
+    height:435px;
 }
 
 .swiper-slide {
-    height:92%;
+    height:95%;
 }
 
 ion-slides {
     display: block;
     width: 100%;
-    height: 420px;
+    height: 435px;
     padding: 6px;
 }
 
@@ -55,7 +55,7 @@ ion-slides {
  .shareButton {
     position: absolute;
     z-index: 1;
-    zoom: 1.3; 
+    zoom: 1.3;
     margin-left: -11px;
 }
 
@@ -69,4 +69,16 @@ ion-slides {
     box-shadow: 0 8px 16px 0 rgba(129, 8, 8, 0.64), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-}  
+ion-select{
+  max-width: 68%;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #f53d3d;
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    color: #f53d3d;
+  }
+
+}

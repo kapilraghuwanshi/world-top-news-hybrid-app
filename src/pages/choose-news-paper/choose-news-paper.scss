@@ -1,14 +1,13 @@
 page-choose-news-paper {
 
- .news-card-home {
-    width: 40%;
-    height: auto;
-    margin: 15px;
-    position:relative;
+ .publisher-card {
+    padding: 10px;
     display: block;
-    float: left;
-    //background-image: url("../assets/image/basenews.png");
-    //box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+   .publisher-img {
+    max-width: 100%;
+    max-height:100%;
   }
 
   .card-title {
@@ -19,12 +18,5 @@ page-choose-news-paper {
     color : brown;
     text-align: center;
   }
-
-  .circle {
-  height: 25px;
-  width: 25px;
-  background-color: grey;
-  border-radius: 50%;
-}
 
 }

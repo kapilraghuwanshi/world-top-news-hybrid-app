@@ -3,6 +3,7 @@ import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FCM } from '@ionic-native/fcm';
 
 import { HomePage } from '../pages/home/home';
 import { AboutUsPage } from '../pages/about_us/about_us';
@@ -23,7 +24,7 @@ export class WorldTopNews {
   //pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,
-    public splashScreen: SplashScreen, public alertCtrl: AlertController, ) {
+    public splashScreen: SplashScreen, public alertCtrl: AlertController, private fcm: FCM) {
     this.initializeApp();
     // // used for an example of ngFor and navigation
     // this.pages = [
@@ -36,22 +37,39 @@ export class WorldTopNews {
     console.log("WorldTopNews rootpage initializeApp method called ");
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      //this.statusBar.styleDefault();
-      //  let status bar overlay webview means no StatusBar shown full screen app
-      this.statusBar.overlaysWebView(true);
-      // set status bar to red
-      this.statusBar.backgroundColorByHexString('#f53d3d');
-      // Splash screen
-      this.splashScreen.hide();
+      //Here you can do any higher level native things you might need.
 
-      // for internet disconnect
+  // for internet disconnect
       this.netwrk.onDisconnect()
         .subscribe(() => {
           console.log('network was disconnected');
           this.nav.setRoot(NoInternetFoundPage);
         });
 
+  // for Firebase Cloud Messaging PUSH Notifications
+      this.fcm.subscribeToTopic('all');
+      this.fcm.getToken().then(token => {
+        // backend.registerToken(token);
+      });
+      this.fcm.onNotification().subscribe(data => {
+        alert('message received')
+        if (data.wasTapped) {
+          console.info("Received in background");
+        } else {
+          console.info("Received in foreground");
+        };
+      });
+      this.fcm.onTokenRefresh().subscribe(token => {
+        // backend.registerToken(token);
+      });
+
+  //this.statusBar.styleDefault();
+      //  let status bar overlay webview means no StatusBar shown full screen app
+      this.statusBar.overlaysWebView(true);
+      // set status bar to red
+      this.statusBar.backgroundColorByHexString('#f53d3d');
+  // Splash screen
+      this.splashScreen.hide();
 
     });
   }
@@ -61,6 +79,6 @@ export class WorldTopNews {
   //   // we wouldn't want the back button to show in this scenario
   //   console.log("MyApp openPage method called ");
   //   this.nav.setRoot(page.component);
-  // } 
+  // }
 
 }
