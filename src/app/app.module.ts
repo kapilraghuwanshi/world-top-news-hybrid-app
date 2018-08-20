@@ -8,10 +8,11 @@ import { HttpModule } from '@angular/http';
 import { Network } from '@ionic-native/network';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import { Vibration } from '@ionic-native/vibration';
+import { Toast } from '@ionic-native/toast';
 import { FCM } from '@ionic-native/fcm';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -46,7 +47,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     WorldTopNews,
-    //LoginPage, 
+    //LoginPage,
     TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
     FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, MyFilterPipe
   ],
@@ -60,13 +61,13 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     WorldTopNews,
-    //LoginPage, 
+    //LoginPage,
     TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
     FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
   ],
   providers: [
     StatusBar, SplashScreen, Network, ThemeableBrowser,
-    SocialSharing, Vibration, Geolocation, FCM,
+    SocialSharing, Vibration,Toast, Geolocation, FCM,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiServiceProvider,
     //FirebaseApiServiceProvider

@@ -6,6 +6,7 @@ import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeab
 //library for social-sharing
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
+import { Toast } from '@ionic-native/toast';
 import { AboutUsPage } from '../about_us/about_us';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 //import { LoginPage } from '../login/login';
@@ -31,28 +32,25 @@ export class ArticlePage {
   constructor(
     public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public navParams: NavParams, public loadingCtrl: LoadingController, public inAppBrowse: ThemeableBrowser,
-    private shareService: SocialSharing, private vibration: Vibration, public apiServ: ApiServiceProvider) {
+    private shareService: SocialSharing, private vibration: Vibration, public apiServ: ApiServiceProvider,
+    private toast: Toast) {
     this.newsArticleSet = this.navParams.get('newarticleset');
-    console.log(this.newsArticleSet);
-    console.log(this.navParams.get('index'));
+    //console.log(this.newsArticleSet);
+    //console.log(this.navParams.get('index'));
     this.articleAuthor = this.newsArticleSet[this.navParams.get('index')].author;
     if (this.articleAuthor == null || this.articleAuthor == "")
       this.articleAuthor = "Not Available";
-    console.log(this.articleAuthor);
     this.articleImage = this.newsArticleSet[this.navParams.get('index')].urlToImage;
     if (this.articleImage == null)
       this.articleImage = "assets/image/basenews.png";
-    console.log(this.articleImage);
     this.articleTitle = this.newsArticleSet[this.navParams.get('index')].title;
-    //console.log(this.articleTitle);
     this.articlePublishedAt = this.newsArticleSet[this.navParams.get('index')].publishedAt;
-    //console.log(this.articlePublishedAt);
     this.articleDescription = this.newsArticleSet[this.navParams.get('index')].description;
     if (this.articleDescription == null)
       this.articleDescription = "Description is not available right now. Click on the Source Link above. Be updated!";
-    console.log(this.articleDescription);
+
     this.articleUrl = this.newsArticleSet[this.navParams.get('index')].url;
-    console.log(this.articleUrl);
+
 
     this.articleDetail = {
       author: this.articleAuthor, urlToImage: this.articleImage, title: this.articleTitle, url: this.articleUrl,
@@ -70,7 +68,10 @@ export class ArticlePage {
   //select and make it favourite
   selectFavoriteArticle() {
     console.log(this.articleDetail);
-    this.vibration.vibrate(1000);
+    this.toast.show(`Article added into your Favorites`, '2000', 'center').subscribe(
+      toast => { console.log(toast); }
+    );
+    this.vibration.vibrate(200);
     this.apiServ.favoriteArticle(this.articleDetail).then(() => {
       this.isFavorite = true;
     });
@@ -79,7 +80,10 @@ export class ArticlePage {
   //select and unfavorite it
   selectUnfavoriteArticle() {
     console.log(this.articleDetail);
-    this.vibration.vibrate(1000);
+    this.toast.show(`Article removed from your Favorites`, '1500', 'center').subscribe(
+      toast => { console.log(toast); }
+    );
+    this.vibration.vibrate(150);
     this.apiServ.unfavoriteArticle(this.articleDetail).then(() => {
       this.isFavorite = false;
     });

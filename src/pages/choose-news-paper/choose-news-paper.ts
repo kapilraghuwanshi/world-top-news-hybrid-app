@@ -90,7 +90,7 @@ export class ChooseNewsPaperPage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Getting updated articles from your preferred Publishers...
+           Getting updated articles from your preferred Publisher...
           </div>`,
       duration: 3500
     });
