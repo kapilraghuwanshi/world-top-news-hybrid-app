@@ -12,6 +12,7 @@ import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
 //import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { PickGeoCountryPage } from '../pages/pick-geo-country/pick-geo-country';
 
 
 @Component({
@@ -22,8 +23,6 @@ export class WorldTopNews {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = TabsPage;
-
-  //pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,
     public splashScreen: SplashScreen, public alertCtrl: AlertController, private localNotif: LocalNotifications,

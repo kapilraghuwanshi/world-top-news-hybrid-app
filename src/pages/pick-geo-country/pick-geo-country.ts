@@ -9,6 +9,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'pick-geo-country.html',
 })
 export class PickGeoCountryPage {
+
   public lati: any;
   public longi: any;
   public newsData: any;
@@ -24,7 +25,8 @@ export class PickGeoCountryPage {
     console.log('ionViewDidLoad PickGeoCountryPage');
   }
 
-  skipToHome(){
+  skipToHome() {
+    this.presentLoadingGif();
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -38,6 +40,8 @@ export class PickGeoCountryPage {
         console.log(this.lati + " & " + this.longi);
       })
       .catch(err => console.log(err));
+    this.presentLoadingGif();
+    this.navCtrl.setRoot(HomePage);
   }
 
   // select countries from dropdown
@@ -51,6 +55,7 @@ export class PickGeoCountryPage {
         this.newsArticles = this.newsData.articles;
         //console.log(this.newsArticles);
       }).catch(err => console.log(err));
+    this.navCtrl.setRoot(HomePage);
   }
 
   // method to show Loading..

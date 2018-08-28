@@ -29,15 +29,19 @@ export class HomePage {
   public baseImage = "assets/image/basenews.png";
   //public selectedLanguage: string = "English";
   public selectedCountry: string = "in";
-
+  public bool: boolean = true;
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public ApiService: ApiServiceProvider,
     public navParams: NavParams, private inAppBrowse: ThemeableBrowser, public modelCtrl: ModalController,
     public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing,
   ) {
-    let countryPage = this.modelCtrl.create(PickGeoCountryPage);
-    countryPage.present();
-    this.presentLoadingGif();
+
+    if (this.bool) {
+      let countryPage = this.modelCtrl.create(PickGeoCountryPage);
+      this.bool = false;
+      countryPage.present();
+    }
+    //skip geo-location page then
     let defaultCountryArg = "in";
     this.ApiService.getNewsDataByCountry(defaultCountryArg)
       .then(data => {
