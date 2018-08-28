@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {
   NavController, Platform, ActionSheetController, AlertController, NavParams,
-  LoadingController
+  LoadingController, ModalController
 } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Network } from '@ionic-native/network';
@@ -12,6 +12,7 @@ import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { ChooseNewsPaperPage } from '../choose-news-paper/choose-news-paper';
 import { AboutUsPage } from '../about_us/about_us';
 import { MyFilterPipe } from '../../pipes/my-filter/my-filter';
+import { PickGeoCountryPage } from '../pick-geo-country/pick-geo-country';
 
 @Component({
   selector: 'page-home',
@@ -26,19 +27,16 @@ export class HomePage {
   //public hindImageArr: [{ image: "" }];
   //public hindiDefaultImage = "HindiNewsDefault.jpg";
   public baseImage = "assets/image/basenews.png";
-  public selectedLanguage: string = "English";
-  public lati: any;
-  public longi: any;
+  //public selectedLanguage: string = "English";
   public selectedCountry: string = "in";
 
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public ApiService: ApiServiceProvider,
-    public navParams: NavParams, private inAppBrowse: ThemeableBrowser,
+    public navParams: NavParams, private inAppBrowse: ThemeableBrowser, public modelCtrl: ModalController,
     public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing,
-    public geo: Geolocation) {
-
-    this.allowGeoLocation();
-
+  ) {
+    let countryPage = this.modelCtrl.create(PickGeoCountryPage);
+    countryPage.present();
     this.presentLoadingGif();
     let defaultCountryArg = "in";
     this.ApiService.getNewsDataByCountry(defaultCountryArg)
@@ -49,31 +47,6 @@ export class HomePage {
         console.log(this.newsArticles);
       }).catch(err => console.log(err));
 
-  }
-
-  //Geo Location
-  allowGeoLocation() {
-    console.log("Inside allowGeoLocation");
-    this.geo.getCurrentPosition()
-      .then(posi => {
-        this.lati = posi.coords.latitude;
-        this.longi = posi.coords.longitude;
-        console.log(this.lati + " & " + this.longi);
-      })
-      .catch(err => console.log(err));
-  }
-
-  // select countries from dropdown
-  chooseCountries() {
-    this.presentLoadingGif();
-    console.log("You have chosen:- " + this.selectedCountry);
-    this.ApiService.getNewsDataByCountry(this.selectedCountry)
-      .then(data => {
-        this.newsData = data;
-        //console.log(this.newsData);
-        this.newsArticles = this.newsData.articles;
-        //console.log(this.newsArticles);
-      }).catch(err => console.log(err));
   }
 
   // select language
@@ -116,22 +89,30 @@ export class HomePage {
   openLinkInAppBrowser(idx) {
     const options: ThemeableBrowserOptions = {
       statusbar: {
-        color: '#f53d3d'
+        color: '#d62537'
       },
       toolbar: {
         height: 44,
-        color: '#f53d3d'
+        color: '#d62537'
       },
       title: {
         color: '#ffffffff',
         showPageTitle: true,
         staticText: 'World Top News'
       },
+      backButton: {
+        image: 'assets/image/BackArrow.png',
+        imagePressed: 'assets/image/BackArrow.png',
+        align: 'left',
+        event: 'backPressed'
+      },
       closeButton: {
-        image: 'assets/image/web.png',
+        image: 'assets/image/Close.png',
+        imagePressed: 'assets/image/Close.png',
         align: 'right',
         event: 'closePressed'
-      }
+      },
+      backButtonCanClose: true
     };
 
     const myBroswer = this.inAppBrowse.create(this.newsArticles[idx].url, '_blank', options);
@@ -159,13 +140,27 @@ export class HomePage {
   compilemsg(idx): string {
     var msg = this.newsArticles[idx].title;
     console.log(msg);
-    return msg.concat("\n \n - Shared via World Top News Hybrid App https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via World Top News App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles
   regularShare(idx) {
     var msg = this.compilemsg(idx);
-    this.shareService.share(msg, null, null, this.newsArticles[idx].url);
+    this.shareService.share(msg, "Latest News!", this.newsArticles[idx].urlToImage, this.newsArticles[idx].url);
+  }
+  //WhatsApp share
+  whatsappShare(idx) {
+    var msg = this.compilemsg(idx);
+    this.shareService.shareViaWhatsApp(msg, this.newsArticles[idx].urlToImage, this.newsArticles[idx].url);
+  }
+  //Social sites sharing
+  facebookShare(idx) {
+    var msg = this.compilemsg(idx);
+    this.shareService.shareViaFacebook(msg, this.newsArticles[idx].urlToImage, this.newsArticles[idx].url);
+  }
+  twitterShare(idx) {
+    var msg = this.compilemsg(idx);
+    this.shareService.shareViaTwitter(msg, this.newsArticles[idx].urlToImage, this.newsArticles[idx].url);
   }
 
   // method to show Loading..

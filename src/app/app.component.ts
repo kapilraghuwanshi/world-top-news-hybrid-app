@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, AlertController } from 'ionic-angular';
+import { Platform, Nav, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FCM } from '@ionic-native/fcm';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+//import { FCM } from '@ionic-native/fcm';
+import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
 
-import { HomePage } from '../pages/home/home';
-import { AboutUsPage } from '../pages/about_us/about_us';
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
 //import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -24,13 +26,9 @@ export class WorldTopNews {
   //pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,
-    public splashScreen: SplashScreen, public alertCtrl: AlertController, private fcm: FCM) {
+    public splashScreen: SplashScreen, public alertCtrl: AlertController, private localNotif: LocalNotifications,
+    public toastCtrl: ToastController, public firebaseServe: FirebaseServiceProvider) {
     this.initializeApp();
-    // // used for an example of ngFor and navigation
-    // this.pages = [
-    //   { title: 'Choose Newspaper', component: HomePage },
-    //   { title: 'About Us', component: AboutUsPage }
-    // ];
   }
 
   initializeApp() {
@@ -39,46 +37,54 @@ export class WorldTopNews {
       // Okay, so the platform is ready and our plugins are available.
       //Here you can do any higher level native things you might need.
 
-  // for internet disconnect
+      // for internet disconnect
       this.netwrk.onDisconnect()
         .subscribe(() => {
           console.log('network was disconnected');
           this.nav.setRoot(NoInternetFoundPage);
         });
 
-  // for Firebase Cloud Messaging PUSH Notifications
-      this.fcm.subscribeToTopic('all');
-      this.fcm.getToken().then(token => {
-        // backend.registerToken(token);
-      });
-      this.fcm.onNotification().subscribe(data => {
-        alert('message received')
-        if (data.wasTapped) {
-          console.info("Received in background");
-        } else {
-          console.info("Received in foreground");
-        };
-      });
-      this.fcm.onTokenRefresh().subscribe(token => {
-        // backend.registerToken(token);
-      });
+      // Get a FCM token
+      this.firebaseServe.getToken()
 
-  //this.statusBar.styleDefault();
+      // Listen to incoming messages
+      this.firebaseServe.listenToNotifications().pipe(
+        tap(msg => {
+          // show a toast
+          console.log("token: " + msg);
+        })).subscribe()
+
+      // Schedule multiple notifications
+      this.localNotif.schedule([{
+        id: 1,
+        title: 'World Top News - Read hourly updated top bulletins!',
+        text: 'Have you check-out the latest news of now?',
+        icon: 'resources/icon.png',
+        sound: 'file://sound.mp3',
+        led: 'FF0000',
+        //data: { secret: key },
+        trigger: { at: new Date(new Date().getTime() + 3600) }
+      },
+      {
+        id: 2,
+        title: 'World Top News - Read hourly updated top bulletins!',
+        text: 'Really enjoying our app. Rate and review on play store - https://goo.gl/TxUuUm',
+        icon: 'resources/icon.png',
+        sound: 'file://sound.mp3',
+        led: 'FF0000',
+        trigger: { at: new Date(new Date().getTime() + 3600) },
+      }]);
+
+
+      //this.statusBar.styleDefault();
       //  let status bar overlay webview means no StatusBar shown full screen app
-      this.statusBar.overlaysWebView(true);
+      //this.statusBar.overlaysWebView(true);
       // set status bar to red
       this.statusBar.backgroundColorByHexString('#f53d3d');
-  // Splash screen
+      // Splash screen
       this.splashScreen.hide();
 
     });
   }
-
-  // openPage(page) {
-  //   // Reset the content nav to have just this page
-  //   // we wouldn't want the back button to show in this scenario
-  //   console.log("MyApp openPage method called ");
-  //   this.nav.setRoot(page.component);
-  // }
 
 }

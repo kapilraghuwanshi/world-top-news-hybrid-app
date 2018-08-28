@@ -68,7 +68,7 @@ export class ArticlePage {
   //select and make it favourite
   selectFavoriteArticle() {
     console.log(this.articleDetail);
-    this.toast.show(`Article added into your Favorites`, '2000', 'center').subscribe(
+    this.toast.show(`Article added into your Favorites. Enjoy reading it anytime!`, '2000', 'center').subscribe(
       toast => { console.log(toast); }
     );
     this.vibration.vibrate(200);
@@ -80,7 +80,7 @@ export class ArticlePage {
   //select and unfavorite it
   selectUnfavoriteArticle() {
     console.log(this.articleDetail);
-    this.toast.show(`Article removed from your Favorites`, '1500', 'center').subscribe(
+    this.toast.show(`Oh, Article removed from your Favorites. You can't read it later`, '1500', 'center').subscribe(
       toast => { console.log(toast); }
     );
     this.vibration.vibrate(150);
@@ -104,11 +104,19 @@ export class ArticlePage {
         showPageTitle: true,
         staticText: 'World Top News'
       },
+      backButton: {
+        image: 'assets/image/BackArrow.png',
+        imagePressed: 'assets/image/BackArrow.png',
+        align: 'left',
+        event: 'backPressed'
+      },
       closeButton: {
-        image: 'assets/image/close.png',
+        image: 'assets/image/Close.png',
+        imagePressed: 'assets/image/Close.png',
         align: 'right',
         event: 'closePressed'
-      }
+      },
+      backButtonCanClose: true
     };
 
     const myBroswer = this.inAppBrowse.create(this.articleUrl, '_blank', options);
@@ -122,13 +130,13 @@ export class ArticlePage {
   // Share Message
   compilemsg(): string {
     var msg = this.articleTitle;
-    return msg.concat("\n \n - Shared via World Top News Hybrid App https://goo.gl/TxUuUm! \n \n");
+    return msg.concat("\n \n - Shared via World Top News App https://goo.gl/TxUuUm! \n \n");
   }
 
   // Share news articles
   regularShare() {
     var msg = this.compilemsg();
-    this.shareService.share(msg, null, null, this.articleUrl);
+    this.shareService.share(msg, "Latest News", this.articleImage, this.articleUrl);
   }
 
   //WhatsApp share

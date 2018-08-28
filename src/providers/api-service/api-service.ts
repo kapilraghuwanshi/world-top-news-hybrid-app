@@ -18,16 +18,16 @@ export class ApiServiceProvider {
   }
 
   //for home page slideshow if selected English
-  getNewsSlideshowEnglish() {
-    return new Promise(resolve => {
-      this.http.get(this.newsURL)
-        .map(resp => resp.json())
-        .subscribe(tempdata => {
-          this.newsData = tempdata;
-          resolve(this.newsData);
-        });
-    });
-  }
+  // getNewsSlideshowEnglish() {
+  //   return new Promise(resolve => {
+  //     this.http.get(this.newsURL)
+  //       .map(resp => resp.json())
+  //       .subscribe(tempdata => {
+  //         this.newsData = tempdata;
+  //         resolve(this.newsData);
+  //       });
+  //   });
+  // }
 
   //for choose countries and furthur page data
   getNewsDataByCountry(countryArg) {
@@ -44,7 +44,7 @@ export class ApiServiceProvider {
   //for choose countries and furthur page data
   getNewsDataByCategory(categoryArg) {
     return new Promise(resolve => {
-      this.http.get('https://newsapi.org/v2/top-headlines?country=us&category=' + categoryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
+      this.http.get('https://newsapi.org/v2/top-headlines?country=in&category=' + categoryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
         .map(resp => resp.json())
         .subscribe(tempdata => {
           this.newsData = tempdata;
@@ -66,17 +66,17 @@ export class ApiServiceProvider {
   }
 
   //for home page slideshow if selected hindi
-  getNewsSlideshowHindi() {
-    return new Promise(resolve => {
-      this.http.get(this.webNewsURL)
-        .map(resp => resp.json())
-        .subscribe(tempdata => {
-          this.newsData = tempdata;
-          resolve(this.newsData);
-          console.log(this.newsData);
-        });
-    });
-  }
+  // getNewsSlideshowHindi() {
+  //   return new Promise(resolve => {
+  //     this.http.get(this.webNewsURL)
+  //       .map(resp => resp.json())
+  //       .subscribe(tempdata => {
+  //         this.newsData = tempdata;
+  //         resolve(this.newsData);
+  //         console.log(this.newsData);
+  //       });
+  //   });
+  // }
 
   //Get All stored favorites
   getAllFavoriteArticles() {

@@ -13,13 +13,17 @@ import { Vibration } from '@ionic-native/vibration';
 import { Toast } from '@ionic-native/toast';
 import { FCM } from '@ionic-native/fcm';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
+import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 //import { AppRoutingModule } from './app-routing.module';
-//import { FirebaseApiServiceProvider } from '../providers/firebase-service/firebase-service';
 import { ApiServiceProvider } from '../providers/api-service/api-service';
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 
 import { WorldTopNews } from './app.component';
 //import { LoginPage } from '../pages/login/login';
@@ -32,6 +36,7 @@ import { ArticlePage } from '../pages/article/article';
 import { FavoritePage } from '../pages/favorite/favorite';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { AboutUsPage } from '../pages/about_us/about_us';
+import { PickGeoCountryPage } from '../pages/pick-geo-country/pick-geo-country';
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
 import { MyFilterPipe } from '../pipes/my-filter/my-filter';
 
@@ -43,34 +48,35 @@ export const firebaseConfig = {
   storageBucket: "worldtopnews-29a42.appspot.com",
   messagingSenderId: "1067875198851"
 };
-
 @NgModule({
   declarations: [
     WorldTopNews,
     //LoginPage,
     TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
-    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, MyFilterPipe
+    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, MyFilterPipe, PickGeoCountryPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(WorldTopNews), IonicStorageModule.forRoot(), FormsModule
-    //AngularFireModule.initializeApp(firebaseConfig),
-    // AppRoutingModule
+    IonicModule.forRoot(WorldTopNews),
+    IonicStorageModule.forRoot(),
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     WorldTopNews,
     //LoginPage,
     TabsPage, HomePage, ChooseNewsPaperPage, ChooseCategoryPage, NewsPaperPage, ArticlePage,
-    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage
+    FavoritePage, MyprofilePage, AboutUsPage, NoInternetFoundPage, PickGeoCountryPage
   ],
   providers: [
     StatusBar, SplashScreen, Network, ThemeableBrowser,
-    SocialSharing, Vibration,Toast, Geolocation, FCM,
+    SocialSharing, Vibration, Toast, Geolocation, FCM, Firebase, LocalNotifications,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiServiceProvider,
-    //FirebaseApiServiceProvider
+    FirebaseServiceProvider
   ]
 })
 export class AppModule { }

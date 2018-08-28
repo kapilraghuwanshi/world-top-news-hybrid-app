@@ -1,6 +1,6 @@
 {
     "name": "WorldTopNews",
-    "version": "0.0.2",
+    "version": "0.0.6",
     "author": "Kapil Raghuwanshi",
     "homepage": "https://about.me/kapilraghuwanshi",
     "private": true,
@@ -24,8 +24,10 @@
         "@ionic-native/camera": "^4.7.0",
         "@ionic-native/core": "3.12.1",
         "@ionic-native/fcm": "^4.10.0",
+        "@ionic-native/firebase": "^4.12.0",
         "@ionic-native/geolocation": "^4.7.0",
         "@ionic-native/in-app-browser": "^4.7.0",
+        "@ionic-native/local-notifications": "^4.12.0",
         "@ionic-native/network": "^4.7.0",
         "@ionic-native/social-sharing": "^4.7.0",
         "@ionic-native/splash-screen": "3.12.1",
@@ -35,17 +37,20 @@
         "@ionic-native/vibration": "^4.11.0",
         "@ionic/storage": "^2.0.1",
         "@reactivex/rxjs": "^5.5.3",
-        "angularfire2": "^4.0.0-rc.2",
+        "angularfire2": "^5.0.0-rc.11",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-badge": "^0.8.7",
         "cordova-plugin-compat": "^1.0.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-fcm-with-dependecy-updated": "^2.2.4",
+        "cordova-plugin-firebase": "^1.0.5",
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-inappbrowser": "^3.0.0",
         "cordova-plugin-ionic-keyboard": "^2.0.5",
         "cordova-plugin-ionic-webview": "^1.1.19",
+        "cordova-plugin-local-notification": "^0.9.0-beta.2",
         "cordova-plugin-network-information": "^2.0.1",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.2",
@@ -56,18 +61,19 @@
         "cordova-plugin-x-toast": "^2.6.2",
         "cordova-sqlite-storage": "^2.3.2",
         "es6-promise-plugin": "^4.1.0",
-        "firebase": "^4.3.1",
+        "firebase": "^5.4.0",
         "ionic": "^4.0.3",
         "ionic-angular": "3.6.1",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
-        "rxjs": "^5.5.3",
+        "rxjs": "^6.2.2",
+        "rxjs-compat": "^6.2.2",
         "sw-toolbox": "3.6.0",
         "zone.js": "0.8.12"
     },
     "devDependencies": {
         "@ionic/app-scripts": "2.1.4",
-        "typescript": "2.3.4"
+        "typescript": "^3.1.0-dev.20180828"
     },
     "description": "An awesome hybrid news app",
     "cordova": {
@@ -89,10 +95,12 @@
             "cordova-sqlite-storage": {},
             "cordova-plugin-fcm-with-dependecy-updated": {},
             "cordova-plugin-vibration": {},
-            "cordova-plugin-x-toast": {}
+            "cordova-plugin-x-toast": {},
+            "cordova-plugin-local-notification": {}
         },
         "platforms": [
             "android",
+            "browser",
             "ios"
         ]
     }
