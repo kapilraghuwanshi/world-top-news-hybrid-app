@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 @IonicPage()
 @Component({
   selector: 'page-pick-geo-country',
@@ -15,47 +15,55 @@ export class PickGeoCountryPage {
   public newsData: any;
   public newsArticles: any;
   public selectedCountry: string = "in";
+  public selectedCountryName: string;
+  public selectedCountryCity: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation
-    , public ApiService: ApiServiceProvider, public loadingCtrl: LoadingController) {
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PickGeoCountryPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation,
+    public ApiService: ApiServiceProvider, public loadingCtrl: LoadingController) {
+    console.log('inside PickGeoCountryPage');
   }
 
   skipToHome() {
     this.presentLoadingGif();
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TabsPage, {
+      defaultCountry: "jp"
+    });
   }
 
   //Allow Geo Location to determine country name
   allowGeoLocation() {
     console.log("Inside allowGeoLocation");
+    this.presentLoadingGif();
     this.geo.getCurrentPosition()
       .then(posi => {
         this.lati = posi.coords.latitude;
         this.longi = posi.coords.longitude;
         console.log(this.lati + " & " + this.longi);
+        this.ApiService.getCountryNameOfYourCurrentLocation(this.lati, this.longi)
+          .then(geoData => {
+            console.log(geoData);
+            this.newsData = geoData;
+            this.newsArticles = this.newsData.address;
+            this.selectedCountry = this.newsData.country_code;
+            this.selectedCountryName = this.newsData.country;
+            this.selectedCountryCity = this.newsData.city;
+            console.log("country came after geo: " + this.selectedCountry + " & " + this.selectedCountryName + " & " + this.selectedCountryCity);
+          })
       })
       .catch(err => console.log(err));
-    this.presentLoadingGif();
-    this.navCtrl.setRoot(HomePage);
+    console.log("country came after geo: " + this.selectedCountry);
+    this.navCtrl.setRoot(TabsPage, {
+      defaultCountry: this.selectedCountry
+    });
   }
 
-  // select countries from dropdown
+  // select countries from given dropdown
   chooseCountries() {
     this.presentLoadingGif();
-    console.log("You have chosen:- " + this.selectedCountry);
-    this.ApiService.getNewsDataByCountry(this.selectedCountry)
-      .then(data => {
-        this.newsData = data;
-        //console.log(this.newsData);
-        this.newsArticles = this.newsData.articles;
-        //console.log(this.newsArticles);
-      }).catch(err => console.log(err));
-    this.navCtrl.setRoot(HomePage);
+    console.log("You have chosen from dropdown:- " + this.selectedCountry);
+    this.navCtrl.setRoot(TabsPage, {
+      defaultCountry: this.selectedCountry
+    });
   }
 
   // method to show Loading..
@@ -63,9 +71,9 @@ export class PickGeoCountryPage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Fetching News bulletins as per your current Location...
+           Fetching news for your location..Hang tight!
           </div>`,
-      duration: 4500
+      duration: 5000
     });
     loading.present();
   }

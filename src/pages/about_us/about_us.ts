@@ -24,7 +24,4 @@ export class AboutUsPage {
 
   }
 
-  goToHome() {
-    this.navCtrl.setRoot(HomePage);
-  }
 }

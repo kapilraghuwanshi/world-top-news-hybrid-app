@@ -21,8 +21,7 @@ export class NewsPaperPage {
   public baseImage = "assets/image/basenews.png";
 
   constructor(public navCtrl: NavController, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-    public navParams: NavParams, public loadingCtrl: LoadingController)
-    {
+    public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.paperName = this.navParams.get('categoryArg');
     //console.log(this.paperName);
     this.articleSet = this.navParams.get('newsArticles');
@@ -53,7 +52,7 @@ export class NewsPaperPage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Just close to your favorite article...
+           Just close to your favorite Publisher...
           </div>`,
       duration: 500
     });
@@ -69,11 +68,11 @@ export class NewsPaperPage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
         },
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

@@ -7,13 +7,12 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 //import { FCM } from '@ionic-native/fcm';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
-
+import { Storage } from '@ionic/storage';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-found';
 //import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PickGeoCountryPage } from '../pages/pick-geo-country/pick-geo-country';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +23,7 @@ export class WorldTopNews {
 
   rootPage: any = TabsPage;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,
+  constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,public storage: Storage,
     public splashScreen: SplashScreen, public alertCtrl: AlertController, private localNotif: LocalNotifications,
     public toastCtrl: ToastController, public firebaseServe: FirebaseServiceProvider) {
     this.initializeApp();
@@ -36,6 +35,15 @@ export class WorldTopNews {
       // Okay, so the platform is ready and our plugins are available.
       //Here you can do any higher level native things you might need.
 
+    this.storage.get('introShown1').then((result) => {
+        if(result){
+          this.rootPage = TabsPage;
+        } else {
+          this.rootPage = PickGeoCountryPage;
+          this.storage.set('introShown', true);
+        }
+      });
+
       // for internet disconnect
       this.netwrk.onDisconnect()
         .subscribe(() => {
@@ -44,34 +52,34 @@ export class WorldTopNews {
         });
 
       // Get a FCM token
-      this.firebaseServe.getToken()
+      // this.firebaseServe.getToken()
 
-      // Listen to incoming messages
-      this.firebaseServe.listenToNotifications().pipe(
-        tap(msg => {
-          // show a toast
-          console.log("token: " + msg);
-        })).subscribe()
+      // // Listen to incoming messages
+      // this.firebaseServe.listenToNotifications().pipe(
+      //   tap(msg => {
+      //     // show a toast
+      //     console.log("token: " + msg);
+      //   })).subscribe()
 
       // Schedule multiple notifications
       this.localNotif.schedule([{
         id: 1,
-        title: 'World Top News - Read hourly updated top bulletins!',
-        text: 'Have you check-out the latest news of now?',
+        title: 'Have you checked-out the latest news of this hour?',
+        text: 'World Top News - Read hourly updated top bulletins!',
         icon: 'resources/icon.png',
         sound: 'file://sound.mp3',
         led: 'FF0000',
         //data: { secret: key },
-        trigger: { at: new Date(new Date().getTime() + 3600) }
+        trigger: { at: new Date(new Date().getTime() + 4800) }
       },
       {
         id: 2,
-        title: 'World Top News - Read hourly updated top bulletins!',
-        text: 'Really enjoying our app. Rate and review on play store - https://goo.gl/TxUuUm',
+        title: 'Really enjoying our app?',
+        text: 'Rate and review on play store - https://goo.gl/TxUuUm',
         icon: 'resources/icon.png',
         sound: 'file://sound.mp3',
         led: 'FF0000',
-        trigger: { at: new Date(new Date().getTime() + 3600) },
+        trigger: { at: new Date(new Date().getTime() + 13600) },
       }]);
 
 

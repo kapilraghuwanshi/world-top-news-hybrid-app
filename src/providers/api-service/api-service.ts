@@ -42,9 +42,9 @@ export class ApiServiceProvider {
   }
 
   //for choose countries and furthur page data
-  getNewsDataByCategory(categoryArg) {
+  getNewsDataByCategory(categoryArg, countryArg) {
     return new Promise(resolve => {
-      this.http.get('https://newsapi.org/v2/top-headlines?country=in&category=' + categoryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
+      this.http.get('https://newsapi.org/v2/top-headlines?country=' + countryArg + '&category=' + categoryArg + '&apiKey=e9052d3beea84071b88f4f55e12f9fe1')
         .map(resp => resp.json())
         .subscribe(tempdata => {
           this.newsData = tempdata;
@@ -60,6 +60,19 @@ export class ApiServiceProvider {
         .map(resp => resp.json())
         .subscribe(tempdata => {
           this.newsData = tempdata;
+          resolve(this.newsData);
+        });
+    });
+  }
+
+  //for Geo-location- to find a country name given lati & longitude
+  getCountryNameOfYourCurrentLocation(latiArg, longArg) {
+    return new Promise(resolve => {
+      this.http.get('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latiArg + '&lon=' + longArg + '&zoom=18&addressdetails=1')
+        .map(resp => resp.json())
+        .subscribe(tempdata => {
+          this.newsData = tempdata;
+          //console.log(this.newsData);
           resolve(this.newsData);
         });
     });

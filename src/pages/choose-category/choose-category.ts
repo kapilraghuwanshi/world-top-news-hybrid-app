@@ -13,6 +13,7 @@ export class ChooseCategoryPage {
 
   public newsData: any;
   public newsArticles: any;
+  public selectedCountryArg: any;
   public ArtsEntertainment_Image = "assets/image/ArtsEntertainment_News.jpg";
   public Business_Image = "assets/image/Business_News.jpg";
   public Health_Image = "assets/image/Health_News.jpg";
@@ -23,15 +24,18 @@ export class ChooseCategoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController,
     public ApiService: ApiServiceProvider) {
-    console.log('ionViewDidLoad ChooseCategoryPage');
+      this.presentLoadingGif();
+    this.selectedCountryArg = this.navParams.get('selectedCountry');
+    console.log('inside ChooseCategoryPage - ' + this.selectedCountryArg);
   }
 
   openCategory(categoryArg) {
     this.presentLoadingGif();
     console.log("Current categoryArg: " + categoryArg);
-    this.ApiService.getNewsDataByCategory(categoryArg).then(data => {
+    let countryArg = this.selectedCountryArg;
+    this.ApiService.getNewsDataByCategory(categoryArg, countryArg).then(data => {
       this.newsData = data;
-     // console.log(this.newsData);
+      // console.log(this.newsData);
       this.newsArticles = this.newsData.articles;
       //console.log(this.newsArticles);
       this.navCtrl.push(NewsPaperPage, {
@@ -62,11 +66,11 @@ export class ChooseCategoryPage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
         },
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

@@ -177,11 +177,11 @@ export class ArticlePage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
         },
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

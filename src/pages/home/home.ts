@@ -29,27 +29,30 @@ export class HomePage {
   public baseImage = "assets/image/basenews.png";
   //public selectedLanguage: string = "English";
   public selectedCountry: string = "in";
-  public bool: boolean = true;
+  //public bool: boolean = true;
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public ApiService: ApiServiceProvider,
     public navParams: NavParams, private inAppBrowse: ThemeableBrowser, public modelCtrl: ModalController,
     public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing,
   ) {
 
-    if (this.bool) {
-      let countryPage = this.modelCtrl.create(PickGeoCountryPage);
-      this.bool = false;
-      countryPage.present();
-    }
+    // if (this.bool) {
+    //   let countryPage = this.modelCtrl.create(PickGeoCountryPage);
+    //   this.bool = false;
+    //   countryPage.present();
+    // }
+
     //skip geo-location page then
-    let defaultCountryArg = "in";
-    this.ApiService.getNewsDataByCountry(defaultCountryArg)
+    let CountryArg = this.navParams.get('selectedCountry');
+    console.log("CountryArg in Home - " + CountryArg);
+    this.ApiService.getNewsDataByCountry(CountryArg)
       .then(data => {
         this.newsData = data;
         //console.log(this.newsData);
         this.newsArticles = this.newsData.articles;
         console.log(this.newsArticles);
-      }).catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
 
   }
 
@@ -89,6 +92,7 @@ export class HomePage {
 
    } */
 
+
   // open in app browser method
   openLinkInAppBrowser(idx) {
     const options: ThemeableBrowserOptions = {
@@ -127,9 +131,9 @@ export class HomePage {
   }
 
   //method to redirect to choose newspaper
-  skipGoToHome() {
-    this.navCtrl.setRoot(ChooseNewsPaperPage);
-  }
+  // skipGoToHome() {
+  //   this.navCtrl.setRoot(ChooseNewsPaperPage);
+  // }
 
   //method pull to referesh
   doRefresh(refresher) {
@@ -180,18 +184,18 @@ export class HomePage {
   }
 
   // method to show Loading..
-  presentLoadingGifHindi() {
-    let loading = this.loadingCtrl.create({
-      content: `
-          <div>
-           Preparing Hindi News bulletins for you..
-          </div>`,
-      duration: 5500
-    });
-    loading.present();
-  }
+  // presentLoadingGifHindi() {
+  //   let loading = this.loadingCtrl.create({
+  //     content: `
+  //         <div>
+  //          Preparing Hindi News bulletins for you..
+  //         </div>`,
+  //     duration: 5500
+  //   });
+  //   loading.present();
+  // }
 
-  // static method to log Out
+  // method to exit app
   appLogout() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'My Profile',
@@ -200,13 +204,13 @@ export class HomePage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
         },
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
-            //this.navCtrl.setRoot(LoginPage);
+            this.platform.exitApp();
           }
         }
       ]

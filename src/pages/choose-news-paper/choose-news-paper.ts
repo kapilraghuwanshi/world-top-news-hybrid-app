@@ -51,8 +51,8 @@ export class ChooseNewsPaperPage {
     public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController,
     public ApiService: ApiServiceProvider, public navParams: NavParams,
     public loadingCtrl: LoadingController, private netwrk: Network) {
-    console.log("Inside HomePage");
-
+    console.log("Inside Publisher");
+    this.presentPageLoadingGif();
     // this.ApiService.getNewsSlideshowEnglish()
     //   .then(data => {
     //     this.newsData = data;
@@ -86,6 +86,18 @@ export class ChooseNewsPaperPage {
   }
 
   // method to show Loading..
+  presentPageLoadingGif() {
+    let loading = this.loadingCtrl.create({
+      content: `
+          <div>
+           You're going to witness ooodles of Top Publishers here...
+          </div>`,
+      duration: 2000
+    });
+    loading.present();
+  }
+
+  // method to show Loading..
   presentLoadingGif() {
     let loading = this.loadingCtrl.create({
       content: `
@@ -106,11 +118,11 @@ export class ChooseNewsPaperPage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
         },
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

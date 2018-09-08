@@ -20,7 +20,7 @@ export class FavoritePage {
   constructor(public navCtrl: NavController, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public apiServ: ApiServiceProvider,
     public navParams: NavParams, public loadingCtrl: LoadingController) {
-
+    this.presentLoadingGif();
   }
 
   //on entry to this page everytime
@@ -51,9 +51,9 @@ export class FavoritePage {
     let loading = this.loadingCtrl.create({
       content: `
           <div>
-           Fetching your favorite articles...
+           Reminisce your beloved articles right here...
           </div>`,
-      duration: 1500
+      duration: 2000
     });
     loading.present();
   }
@@ -67,11 +67,11 @@ export class FavoritePage {
         {
           text: 'About Us',
           handler: () => {
-            this.navCtrl.setRoot(AboutUsPage);
+            this.navCtrl.push(AboutUsPage);
           }
-        },
+        },  
         {
-          text: 'Logout',
+          text: 'Exit',
           handler: () => {
             //this.navCtrl.setRoot(LoginPage);
           }

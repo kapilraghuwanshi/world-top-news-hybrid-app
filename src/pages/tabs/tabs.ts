@@ -18,10 +18,14 @@ export class TabsPage {
   public tab2Root: any = ChooseCategoryPage;
   public tab3Root: any = ChooseNewsPaperPage;
   public tab4Root: any = FavoritePage;
-  public tab5Root: any = MyprofilePage;
+  public countryParam: string;
+  public selectedCountryParam: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+    console.log("inside TabsPage");
+    this.countryParam = navParams.get('defaultCountry');
+    console.log("selectedCountryParam in TabsPage : " + this.countryParam);
+    this.selectedCountryParam = { selectedCountry: this.countryParam };
   }
 
 }
