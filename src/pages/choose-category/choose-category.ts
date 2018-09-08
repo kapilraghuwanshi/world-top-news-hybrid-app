@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController, Platform } from 'ionic-angular';
 import { AboutUsPage } from '../about_us/about_us';
 import { NewsPaperPage } from '../news-paper/news-paper';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
@@ -23,8 +23,8 @@ export class ChooseCategoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController,
-    public ApiService: ApiServiceProvider) {
-      this.presentLoadingGif();
+    public ApiService: ApiServiceProvider, public platform: Platform, ) {
+    this.presentLoadingGif();
     this.selectedCountryArg = this.navParams.get('selectedCountry');
     console.log('inside ChooseCategoryPage - ' + this.selectedCountryArg);
   }
@@ -48,6 +48,7 @@ export class ChooseCategoryPage {
   // method to show Loading..
   presentLoadingGif() {
     let loading = this.loadingCtrl.create({
+      spinner: 'dots',
       content: `
           <div>
            Getting close to your dearest category...
@@ -57,10 +58,10 @@ export class ChooseCategoryPage {
     loading.present();
   }
 
-  // static method to log Out
+  // setting method -About us & exit app
   appLogout() {
     let actionSheet = this.actionsheetCtrl.create({
-      title: 'My Profile',
+      title: 'Settings',
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
@@ -70,9 +71,9 @@ export class ChooseCategoryPage {
           }
         },
         {
-          text: 'Exit',
+          text: 'Exit the App',
           handler: () => {
-            //this.navCtrl.setRoot(LoginPage);
+            this.platform.exitApp();
           }
         }
       ]

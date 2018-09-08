@@ -3,7 +3,7 @@ import { Platform, Nav, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocalNotifications, ILocalNotificationTrigger } from '@ionic-native/local-notifications';
 //import { FCM } from '@ionic-native/fcm';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class WorldTopNews {
 
   rootPage: any = TabsPage;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network,public storage: Storage,
+  constructor(public platform: Platform, public statusBar: StatusBar, public netwrk: Network, public storage: Storage,
     public splashScreen: SplashScreen, public alertCtrl: AlertController, private localNotif: LocalNotifications,
     public toastCtrl: ToastController, public firebaseServe: FirebaseServiceProvider) {
     this.initializeApp();
@@ -35,8 +35,8 @@ export class WorldTopNews {
       // Okay, so the platform is ready and our plugins are available.
       //Here you can do any higher level native things you might need.
 
-    this.storage.get('introShown1').then((result) => {
-        if(result){
+      this.storage.get('introShown1').then((result) => {
+        if (result) {
           this.rootPage = TabsPage;
         } else {
           this.rootPage = PickGeoCountryPage;
@@ -62,25 +62,29 @@ export class WorldTopNews {
       //   })).subscribe()
 
       // Schedule multiple notifications
-      this.localNotif.schedule([{
-        id: 1,
-        title: 'Have you checked-out the latest news of this hour?',
-        text: 'World Top News - Read hourly updated top bulletins!',
-        icon: 'resources/icon.png',
-        sound: 'file://sound.mp3',
-        led: 'FF0000',
-        //data: { secret: key },
-        trigger: { at: new Date(new Date().getTime() + 4800) }
-      },
-      {
-        id: 2,
-        title: 'Really enjoying our app?',
-        text: 'Rate and review on play store - https://goo.gl/TxUuUm',
-        icon: 'resources/icon.png',
-        sound: 'file://sound.mp3',
-        led: 'FF0000',
-        trigger: { at: new Date(new Date().getTime() + 13600) },
-      }]);
+      this.localNotif.schedule([
+        {
+          id: 1,
+          title: 'Wanna jump to latest bulletins?',
+          text: 'World Top News - Read news in the shortest form ever!',
+          icon: 'resources/icon.png',
+          //sound: 'file://sound.mp3',
+          //led: { color: '#FF00FF', on: 500, off: 500 },
+          vibrate: true,
+          //data: { myData: 'World Top News - Read news in the shortest form ever!' },
+          trigger: { at: new Date(new Date().getTime() + 10 * 1000), count: 5 }
+        },
+        {
+          id: 2,
+          title: 'Really enjoying our app?',
+          text: 'Rate and review on play store - https://goo.gl/TxUuUm',
+          icon: 'resources/icon.png',
+         //sound: 'file://sound.mp3',
+         //led: { color: '#FF00FF', on: 500, off: 500 },
+          vibrate: true,
+          trigger: { at: new Date(new Date().getTime() + 1200 * 1000), count: 8 },
+        }
+      ]);
 
 
       //this.statusBar.styleDefault();
@@ -93,5 +97,6 @@ export class WorldTopNews {
 
     });
   }
+
 
 }

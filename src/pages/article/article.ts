@@ -68,7 +68,7 @@ export class ArticlePage {
   //select and make it favourite
   selectFavoriteArticle() {
     console.log(this.articleDetail);
-    this.toast.show(`Article added into your Favorites. Enjoy reading it anytime!`, '2000', 'center').subscribe(
+    this.toast.show(`Article added into your Favorites. Enjoy reading it anytime!`, '2500', 'center').subscribe(
       toast => { console.log(toast); }
     );
     this.vibration.vibrate(200);
@@ -80,7 +80,7 @@ export class ArticlePage {
   //select and unfavorite it
   selectUnfavoriteArticle() {
     console.log(this.articleDetail);
-    this.toast.show(`Oh, Article removed from your Favorites. You can't read it later`, '1500', 'center').subscribe(
+    this.toast.show(`Oh, Article removed from your Favorites. You can't read it later`, '2000', 'center').subscribe(
       toast => { console.log(toast); }
     );
     this.vibration.vibrate(150);
@@ -168,10 +168,10 @@ export class ArticlePage {
     loading.present();
   }
 
-  // static method to log Out
+  // setting method -About us & exit app
   appLogout() {
     let actionSheet = this.actionsheetCtrl.create({
-      title: 'My Profile',
+      title: 'Settings',
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
@@ -181,9 +181,9 @@ export class ArticlePage {
           }
         },
         {
-          text: 'Exit',
+          text: 'Exit the App',
           handler: () => {
-            //this.navCtrl.setRoot(LoginPage);
+            this.platform.exitApp();
           }
         }
       ]

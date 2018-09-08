@@ -26,7 +26,7 @@ export class PickGeoCountryPage {
   skipToHome() {
     this.presentLoadingGif();
     this.navCtrl.setRoot(TabsPage, {
-      defaultCountry: "jp"
+      defaultCountry: "in"
     });
   }
 
@@ -47,11 +47,12 @@ export class PickGeoCountryPage {
             this.selectedCountry = this.newsData.country_code;
             this.selectedCountryName = this.newsData.country;
             this.selectedCountryCity = this.newsData.city;
-            console.log("country came after geo: " + this.selectedCountry + " & " + this.selectedCountryName + " & " + this.selectedCountryCity);
+            console.log("country came: " + this.selectedCountry + " & " + this.selectedCountryName + " & " + this.selectedCountryCity);
           })
       })
       .catch(err => console.log(err));
-    console.log("country came after geo: " + this.selectedCountry);
+
+    //this.presentLoadingCountryDetails(this.selectedCountryCity, this.selectedCountryName);
     this.navCtrl.setRoot(TabsPage, {
       defaultCountry: this.selectedCountry
     });
@@ -69,13 +70,27 @@ export class PickGeoCountryPage {
   // method to show Loading..
   presentLoadingGif() {
     let loading = this.loadingCtrl.create({
+      spinner:'bubbles',
       content: `
           <div>
-           Fetching news for your location..Hang tight!
+           Fetching news from your location...Hang tight!
           </div>`,
       duration: 5000
     });
     loading.present();
   }
+
+  // method to show Loading..
+  // presentLoadingCountryDetails(city, country) {
+  //   let loading = this.loadingCtrl.create({
+  //     spinner:'bubbles',
+  //     content: `
+  //         <div>
+  //          Awesome! You're at {{city}}, {{country}}.  Enjoy what's going around you!
+  //         </div>`,
+  //     duration: 4000
+  //   });
+  //   loading.present();
+  // }
 
 }

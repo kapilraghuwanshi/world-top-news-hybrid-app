@@ -109,10 +109,10 @@ export class ChooseNewsPaperPage {
     loading.present();
   }
 
-  // static method to log Out
+  // setting method -About us & exit app
   appLogout() {
     let actionSheet = this.actionsheetCtrl.create({
-      title: 'My Profile',
+      title: 'Settings',
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
@@ -122,9 +122,9 @@ export class ChooseNewsPaperPage {
           }
         },
         {
-          text: 'Exit',
+          text: 'Exit the App',
           handler: () => {
-            //this.navCtrl.setRoot(LoginPage);
+            this.platform.exitApp();
           }
         }
       ]
