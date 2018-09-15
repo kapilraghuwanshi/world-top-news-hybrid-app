@@ -9,7 +9,7 @@ export class FirebaseServiceProvider {
 
   constructor(public http: Http, public firebaseNative: Firebase, public afs: AngularFirestore,
     private platform: Platform) {
-    console.log('Hello FirebaseServiceProvider Provider');
+    console.log('Inside FirebaseServiceProvider Provider for Push FCM');
   }
 
   // Get permission from the user

@@ -38,7 +38,8 @@
         "@ionic/storage": "^2.0.1",
         "@reactivex/rxjs": "^5.5.3",
         "angularfire2": "^5.0.0-rc.11",
-        "cordova-android": "^6.2.3",
+        "cordova": "^8.0.0",
+        "cordova-android": "7.0.0",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-badge": "^0.8.7",
@@ -93,13 +94,12 @@
             },
             "cordova-plugin-themeablebrowser": {},
             "cordova-sqlite-storage": {},
-            "cordova-plugin-fcm-with-dependecy-updated": {},
             "cordova-plugin-vibration": {},
             "cordova-plugin-x-toast": {},
-            "cordova-plugin-local-notification": {}
+            "cordova-plugin-local-notification": {},
+            "cordova-plugin-fcm-with-dependecy-updated": {}
         },
         "platforms": [
-            "android",
             "browser",
             "ios"
         ]

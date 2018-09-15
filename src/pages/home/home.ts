@@ -35,16 +35,17 @@ export class HomePage {
     public navParams: NavParams, private inAppBrowse: ThemeableBrowser, public modelCtrl: ModalController,
     public loadingCtrl: LoadingController, private netwrk: Network, private shareService: SocialSharing,
   ) {
-
+    console.log("Inside Home page ");
     // if (this.bool) {
     //   let countryPage = this.modelCtrl.create(PickGeoCountryPage);
     //   this.bool = false;
     //   countryPage.present();
     // }
+    
 
-    //skip geo-location page then
+    // geo-location page brings selected country
     let CountryArg = this.navParams.get('selectedCountry');
-    console.log("CountryArg in Home - " + CountryArg);
+    console.log("CountryArg in Home from geo-location page - " + CountryArg);
     this.ApiService.getNewsDataByCountry(CountryArg)
       .then(data => {
         this.newsData = data;

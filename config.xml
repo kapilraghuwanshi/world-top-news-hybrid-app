@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="raghuwanshi.kapil.WorldTopNews" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>WorldTopNews</name>
-    <description>One place to know the world! An awesome hybrid News app!</description>
+    <description>One place to know the world! An awesome Hybrid News App!</description>
     <author email="kapil.raghuwanshi5@gmail.com" href="https://about.me/kapilraghuwanshi">
     Kapil Raghuwanshi</author>
     <content src="index.html" />
@@ -87,9 +87,6 @@
         <preference name="SplashScreenWidth" value="250" />
         <preference name="SplashScreenHeight" value="550" />
     </platform>
-    <engine name="android" spec="^6.2.3" />
-    <engine name="browser" spec="^4.1.0" />
-    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.2.4" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
@@ -109,4 +106,6 @@
     <plugin name="cordova-plugin-x-toast" spec="^2.6.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <engine name="browser" spec="^4.1.0" />
+    <engine name="ios" spec="^4.4.0" />
 </widget>

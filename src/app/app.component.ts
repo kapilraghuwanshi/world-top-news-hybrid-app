@@ -3,7 +3,7 @@ import { Platform, Nav, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LocalNotifications, ILocalNotificationTrigger } from '@ionic-native/local-notifications';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 //import { FCM } from '@ionic-native/fcm';
 import { Subject } from 'rxjs/Subject';
 import { tap } from 'rxjs/operators';
@@ -52,13 +52,12 @@ export class WorldTopNews {
         });
 
       // Get a FCM token
-      // this.firebaseServe.getToken()
-
-      // // Listen to incoming messages
+      //this.firebaseServe.getToken()
+      // Listen to incoming messages
       // this.firebaseServe.listenToNotifications().pipe(
       //   tap(msg => {
       //     // show a toast
-      //     console.log("token: " + msg);
+      //     console.log("token found for Push Notofications: " + msg);
       //   })).subscribe()
 
       // Schedule multiple notifications
@@ -79,8 +78,8 @@ export class WorldTopNews {
           title: 'Really enjoying our app?',
           text: 'Rate and review on play store - https://goo.gl/TxUuUm',
           icon: 'resources/icon.png',
-         //sound: 'file://sound.mp3',
-         //led: { color: '#FF00FF', on: 500, off: 500 },
+          //sound: 'file://sound.mp3',
+          //led: { color: '#FF00FF', on: 500, off: 500 },
           vibrate: true,
           trigger: { at: new Date(new Date().getTime() + 1200 * 1000), count: 8 },
         }
