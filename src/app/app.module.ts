@@ -41,12 +41,12 @@ import { NoInternetFoundPage } from '../pages/no-internet-found/no-internet-foun
 import { MyFilterPipe } from '../pipes/my-filter/my-filter';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyB-aeFaY4aOvDJwsbfzvas8h-rTLzrQz6c",
-  authDomain: "worldtopnews-29a42.firebaseapp.com",
-  databaseURL: "https://worldtopnews-29a42.firebaseio.com",
-  projectId: "worldtopnews-29a42",
-  storageBucket: "worldtopnews-29a42.appspot.com",
-  messagingSenderId: "1067875198851"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
 };
 @NgModule({
   declarations: [
