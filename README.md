@@ -8,4 +8,6 @@ Add this PWA to your mobile or laptops’ home screen, which gives native app li
 
 This is an hybrid application built over Ionic and Cordova plugins.
 
-<img src="https://img.youtube.com/vi/v=NvgvNarb8VQ/maxresdefault.jpg" width="50%">
+Click on the below link-
+
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/NvgvNarb8VQ)
