@@ -16,3 +16,14 @@ This is an hybrid application built over Ionic and Cordova plugins.
 Click on the below link to watch the real time working app on Youtube-
 
 ### [![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/NvgvNarb8VQ)
+
+### Salient Highlights 🎉:
+
+* <b>Share</b> the latest news with your friends and family members through WhatsApp, Facebook, Twitter or whatnot.⤴️
+* <b>Read</b> news of your own country🌀 in your language be it Spanish, Thai, German, Mandarin, Japanese, French, Korean, Arabian etc.🏁
+* <b>Select</b> from world's best exclusively hand-picked Publishers for you.📚
+* <b>Dive</b> into your own loveable Categories - Be it Business🏦, Technology📳, Health, Sports🎾, Science or Entertainment.📽️
+* <b>Save</b> your favourite news articles on the device for the future read like The Washington Post, CNN, BBC, Yahoo, MSN, Fox News, ESPN, Economic Times and many more.✡️
+* <b>Enjoy</b> all external links in the In-App-Browser(within the app). 📲
+* Targeting - Android 8.0 Oreo.8️⃣
+* Built on Cross Platform Hybrid App Technologies.
