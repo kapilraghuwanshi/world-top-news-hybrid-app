@@ -1,6 +1,9 @@
-
-
 ## World Top News - Hybrid Mobile App
+![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/kapilraghuwanshi/world-top-news-hybrid-app/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://play.google.com/store/apps/details?id=raghuwanshi.kapil.WorldTopNews)
+[![GitHub forks](https://img.shields.io/github/forks/Naereen/StrapDown.js.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/kapilraghuwanshi/world-top-news-hybrid-app/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Naereen/StrapDown.js.svg?style=social&label=Star&maxAge=2592000)](https://github.com/kapilraghuwanshi/world-top-news-hybrid-app/stargazers)
 
 An awesome real time live hybrid app to read and share world top news updated on hourly basis. 
 
