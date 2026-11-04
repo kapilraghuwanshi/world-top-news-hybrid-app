@@ -33,3 +33,14 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+# Environment variables & API keys
+.env
+.env.*
+!.env.example
+
+# Android build outputs & keys
+*.jks
+*.keystore
+*.aab
+*.apk

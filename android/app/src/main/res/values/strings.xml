@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">World Top News</string>
+    <string name="title_activity_main">World Top News</string>
+    <string name="package_name">raghuwanshi.kapil.WorldTopNews</string>
+    <string name="custom_url_scheme">raghuwanshi.kapil.WorldTopNews</string>
+</resources>

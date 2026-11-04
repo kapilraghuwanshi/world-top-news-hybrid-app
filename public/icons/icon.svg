@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="url(#accent)" stroke-width="18" opacity="0.4"/>
+  <circle cx="256" cy="256" r="120" fill="none" stroke="url(#accent)" stroke-width="14"/>
+  <path d="M 136 256 A 120 120 0 0 0 376 256 Z" fill="url(#accent)" opacity="0.2"/>
+  <!-- Globe Grid Lines -->
+  <ellipse cx="256" cy="256" rx="60" ry="120" fill="none" stroke="#60a5fa" stroke-width="12"/>
+  <line x1="136" y1="256" x2="376" y2="256" stroke="#60a5fa" stroke-width="12"/>
+  <line x1="166" y1="196" x2="346" y2="196" stroke="#60a5fa" stroke-width="8" opacity="0.7"/>
+  <line x1="166" y1="316" x2="346" y2="316" stroke="#60a5fa" stroke-width="8" opacity="0.7"/>
+  <!-- Newspaper Badge -->
+  <rect x="280" y="260" width="140" height="120" rx="16" fill="#ffffff"/>
+  <rect x="300" y="280" width="100" height="14" rx="4" fill="#1e3a8a"/>
+  <rect x="300" y="304" width="80" height="8" rx="3" fill="#64748b"/>
+  <rect x="300" y="320" width="90" height="8" rx="3" fill="#64748b"/>
+  <rect x="300" y="336" width="60" height="8" rx="3" fill="#2563eb"/>
+</svg>

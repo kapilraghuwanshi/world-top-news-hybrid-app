@@ -1,0 +1,42 @@
+{
+  "id": "com.worldtopnews.pwa",
+  "name": "World Top News",
+  "short_name": "WorldNews",
+  "description": "Stay updated with real-time global news, breaking headlines, tech, sports, and business stories.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#d62537",
+  "theme_color": "#d62537",
+  "categories": ["news", "magazines", "utilities"],
+  "icons": [
+    {
+      "src": "/resources/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Top Bulletins",
+      "short_name": "Bulletins",
+      "description": "View latest breaking headlines",
+      "url": "/?cat=top"
+    },
+    {
+      "name": "Favorites",
+      "short_name": "Favorites",
+      "description": "Access your saved news stories",
+      "url": "/?tab=bookmarks"
+    }
+  ]
+}

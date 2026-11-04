@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Top News - Global Breaking Stories & Bulletins</title>
+
+  <!-- Responsive & PWA Viewport -->
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- PWA Theme Color & Manifest (Original Red #d62537) -->
+  <meta name="theme-color" content="#d62537">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Apple iOS Mobile App Tags & Original App Icon -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="World News">
+  <link rel="apple-touch-icon" href="/resources/icon.png">
+  <link rel="icon" type="image/png" href="/resources/icon.png">
+
+  <!-- Ionic core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@8.4.1/css/ionic.bundle.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@8.4.1/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@8.4.1/dist/ionic/ionic.js"></script>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --ion-color-primary: #d62537;
+      --ion-color-primary-rgb: 214, 37, 55;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-shade: #bd2131;
+      --ion-color-primary-tint: #da3b4b;
+      --app-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --app-bg: #0f172a;
+        --card-bg: #1e293b;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        --card-border: #334155;
+        --text-main: #f8fafc;
+        --text-sub: #94a3b8;
+      }
+      body {
+        background-color: var(--app-bg);
+        color: var(--text-main);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    /* Safe area padding support for notches & home bars */
+    ion-header {
+      padding-top: env(safe-area-inset-top);
+    }
+    ion-footer {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.3px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    /* Red Header Styling matching original app */
+    .app-header-toolbar {
+      --background: #d62537;
+      --color: #ffffff;
+    }
+
+    /* Red Tab Bar Styling matching original app */
+    .app-footer-tabs {
+      --background: #d62537;
+      --color: rgba(255, 255, 255, 0.75);
+      --color-selected: #ffffff;
+      border-top: none;
+    }
+
+    ion-tab-button {
+      --color: rgba(255, 255, 255, 0.75);
+      --color-selected: #ffffff;
+      font-weight: 600;
+    }
+    ion-tab-button.tab-selected ion-icon,
+    ion-tab-button.tab-selected ion-label {
+      color: #ffffff !important;
+      font-weight: 800;
+    }
+
+    /* PWA Install Prompt Banner */
+    .pwa-install-banner {
+      background: linear-gradient(135deg, #d62537, #991b1b);
+      color: #ffffff;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(214, 37, 55, 0.3);
+      animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .pwa-install-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .pwa-install-btn {
+      background: #ffffff;
+      color: #d62537;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: transform 0.15s ease;
+    }
+    .pwa-install-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Offline Cache Notice Banner */
+    .cache-notice-banner {
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      color: #92400e;
+      padding: 8px 16px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Category Filter Chips - Touch Optimized Horizontal Scroll */
+    .category-chip-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 16px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .category-chip-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-chip {
+      flex: 0 0 auto;
+      font-weight: 600;
+      cursor: pointer;
+      scroll-snap-align: start;
+      transition: all 0.2s ease;
+      min-height: 36px;
+    }
+
+    /* Search Bar in Subheader */
+    .search-bar-wrapper {
+      padding: 4px 12px 8px 12px;
+      background: var(--app-bg);
+    }
+
+    /* Responsive Grid Layout for Mobile, Tablet, Desktop */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 12px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 16px 20px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 24px 32px;
+      }
+    }
+
+    /* News Card Design */
+    .news-card {
+      margin: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+
+    @media (hover: hover) {
+      .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.15);
+      }
+    }
+
+    /* Hero Card styling for the 1st news story on larger viewports */
+    @media (min-width: 768px) {
+      .news-card.hero-card {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+      }
+      .news-card.hero-card .news-card-img-wrapper {
+        height: 100%;
+        min-height: 280px;
+      }
+      .news-card.hero-card .news-title {
+        font-size: 22px;
+      }
+    }
+
+    .news-card-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+      overflow: hidden;
+    }
+
+    .news-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .news-card:hover .news-card-img {
+      transform: scale(1.04);
+    }
+
+    .news-source-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .news-source-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .news-time-tag {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #cbd5e1;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      backdrop-filter: blur(6px);
+    }
+
+    .news-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .news-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-main);
+      margin: 0 0 8px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-sub);
+      margin: 0 0 16px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--card-border);
+      padding-top: 10px;
+      margin-top: auto;
+    }
+
+    /* Offline Toast Banner */
+    .offline-banner {
+      background: #ef4444;
+      color: #ffffff;
+      text-align: center;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .policy-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px auto;
+      max-width: 800px;
+      box-shadow: var(--card-shadow);
+    }
+
+    /* Touch target ergonomics */
+    ion-button {
+      min-height: 44px;
+    }
+  </style>
+</head>
+<body>
+  <ion-app>
+    <!-- Offline Indicator Banner -->
+    <div id="offline-banner" class="offline-banner" style="display: none;">
+      <ion-icon name="wifi-outline"></ion-icon>
+      <span>You are currently offline. Showing cached stories.</span>
+    </div>
+
+    <!-- PWA Install Banner -->
+    <div id="pwa-install-banner" class="pwa-install-banner" style="display: none;">
+      <div class="pwa-install-text">
+        <ion-icon name="download-outline" style="font-size: 20px;"></ion-icon>
+        <span>Install World Top News app for quick offline access!</span>
+      </div>
+      <button class="pwa-install-btn" id="pwa-install-btn">INSTALL</button>
+    </div>
+
+    <!-- Cached Stories Notice Banner -->
+    <div id="cache-notice-banner" class="cache-notice-banner" style="display: none;">
+      <ion-icon name="time-outline" style="font-size: 16px;"></ion-icon>
+      <span>Displaying offline cached bulletins from previous session.</span>
+    </div>
+
+    <!-- Top Red App Header -->
+    <ion-header translucent="true">
+      <ion-toolbar class="app-header-toolbar">
+        <!-- Original Globe Logo on Left -->
+        <ion-buttons slot="start">
+          <ion-button fill="clear" style="color: #ffffff;">
+            <ion-icon name="globe" style="font-size: 26px; color: #ffffff;"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <!-- Centered Brand Title -->
+        <ion-title class="brand-title">
+          World Top News
+        </ion-title>
+
+        <!-- Right Header Action Buttons: Search, Country, Language, Profile -->
+        <ion-buttons slot="end">
+          <ion-button id="search-toggle-btn" fill="clear" style="color: #ffffff;">
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
+          <ion-button id="country-btn" fill="clear" style="color: #ffffff;">
+            <ion-icon slot="icon-only" name="flag-outline"></ion-icon>
+          </ion-button>
+          <ion-button id="lang-btn" fill="clear" style="color: #ffffff;">
+            <ion-icon slot="icon-only" name="language-outline"></ion-icon>
+          </ion-button>
+          <ion-button id="profile-btn" fill="clear" style="color: #ffffff;">
+            <ion-icon slot="icon-only" name="person-circle-outline" style="font-size: 26px;"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <!-- Expandable Live Search Bar -->
+      <div class="search-bar-wrapper" id="search-bar-wrapper" style="display: none;">
+        <ion-searchbar id="news-searchbar" placeholder="Search live bulletins..." animated="true" debounce="300"></ion-searchbar>
+      </div>
+
+      <!-- Category Filter Chips -->
+      <ion-toolbar id="category-toolbar">
+        <div class="category-chip-row" id="category-chips">
+          <ion-chip color="primary" data-cat="top" class="category-chip">
+            <ion-label>🔥 Top</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="technology" class="category-chip">
+            <ion-label>💻 Tech</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="sports" class="category-chip">
+            <ion-label>⚽ Sports</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="business" class="category-chip">
+            <ion-label>💼 Business</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="science" class="category-chip">
+            <ion-label>🔬 Science</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="entertainment" class="category-chip">
+            <ion-label>🎬 Entertainment</ion-label>
+          </ion-chip>
+          <ion-chip outline color="primary" data-cat="health" class="category-chip">
+            <ion-label>🏥 Health</ion-label>
+          </ion-chip>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content id="main-content" fullscreen="true">
+      <!-- Refresher -->
+      <ion-refresher slot="fixed" id="refresher">
+        <ion-refresher-content pulling-text="Pull to refresh..." refreshing-spinner="crescent" refreshing-text="Fetching latest news..."></ion-refresher-content>
+      </ion-refresher>
+
+      <!-- News Articles Container (Responsive Grid) -->
+      <div id="articles-container" class="news-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Skeleton Loading Shimmer Screen (4 Cards Grid) -->
+      <div id="skeleton-loader" class="news-grid" style="display: none;">
+        <div class="news-card">
+          <ion-skeleton-text animated style="width: 100%; height: 200px; margin: 0;"></ion-skeleton-text>
+          <div style="padding: 16px;">
+            <ion-skeleton-text animated style="width: 80%; height: 22px; margin-bottom: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 95%; height: 14px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 70%; height: 14px; margin-bottom: 16px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 40%; height: 28px;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="news-card">
+          <ion-skeleton-text animated style="width: 100%; height: 200px; margin: 0;"></ion-skeleton-text>
+          <div style="padding: 16px;">
+            <ion-skeleton-text animated style="width: 85%; height: 22px; margin-bottom: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 90%; height: 14px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 65%; height: 14px; margin-bottom: 16px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 40%; height: 28px;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="news-card">
+          <ion-skeleton-text animated style="width: 100%; height: 200px; margin: 0;"></ion-skeleton-text>
+          <div style="padding: 16px;">
+            <ion-skeleton-text animated style="width: 75%; height: 22px; margin-bottom: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 88%; height: 14px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 60%; height: 14px; margin-bottom: 16px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 40%; height: 28px;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="news-card">
+          <ion-skeleton-text animated style="width: 100%; height: 200px; margin: 0;"></ion-skeleton-text>
+          <div style="padding: 16px;">
+            <ion-skeleton-text animated style="width: 80%; height: 22px; margin-bottom: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 92%; height: 14px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 70%; height: 14px; margin-bottom: 16px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 40%; height: 28px;"></ion-skeleton-text>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infinite Scroll / Load More -->
+      <div id="load-more-container" style="text-align: center; padding: 20px 16px 80px 16px; display: none; max-width: 400px; margin: 0 auto;">
+        <ion-button expand="block" fill="outline" id="load-more-btn" color="primary" shape="round">
+          <ion-icon slot="start" id="load-more-icon" name="arrow-down-circle-outline"></ion-icon>
+          <span id="load-more-text">Load More Bulletins</span>
+        </ion-button>
+      </div>
+
+      <!-- Graceful Empty / Error State -->
+      <div id="empty-state" style="text-align: center; padding: 64px 24px; display: none;">
+        <ion-icon id="empty-state-icon" name="cloud-offline-outline" style="font-size: 72px; color: #d62537;"></ion-icon>
+        <h3 id="empty-state-title" style="margin-top: 16px; font-weight: 800; font-size: 20px;">Unable to Load Bulletins</h3>
+        <p id="empty-state-desc" style="color: var(--text-sub); font-size: 14px; max-width: 380px; margin: 8px auto; line-height: 1.5;">
+          We couldn't connect to news servers or no bulletins were returned. Please check your internet connection or try changing country or category.
+        </p>
+        <ion-button fill="solid" color="primary" id="retry-btn" shape="round" style="margin-top: 16px;">
+          <ion-icon slot="start" name="refresh-outline"></ion-icon>
+          Retry Loading
+        </ion-button>
+      </div>
+    </ion-content>
+
+    <!-- Original Red Bottom Tab Bar matching the screenshot -->
+    <ion-footer>
+      <ion-toolbar class="app-header-toolbar">
+        <ion-tabs>
+          <ion-tab-bar slot="bottom" class="app-footer-tabs">
+            <ion-tab-button tab="feed" id="tab-feed" class="tab-selected" selected>
+              <ion-icon name="grid"></ion-icon>
+              <ion-label>Bulletins</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="categories" id="tab-categories">
+              <ion-icon name="cube"></ion-icon>
+              <ion-label>Categories</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="bookmarks" id="tab-bookmarks">
+              <ion-icon name="star"></ion-icon>
+              <ion-label>Favorites</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="about" id="tab-about">
+              <ion-icon name="information-circle"></ion-icon>
+              <ion-label>About</ion-label>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+      </ion-toolbar>
+      <!-- Bottom Branding Label -->
+      <div style="background: #d62537; color: rgba(255, 255, 255, 0.95); text-align: center; font-size: 11px; font-weight: 600; padding: 4px 8px 6px 8px; border-top: 1px solid rgba(255, 255, 255, 0.15); letter-spacing: 0.2px;">
+        Developed with ❤️ by Tech Monk-Kapil from India 🇮🇳
+      </div>
+    </ion-footer>
+  </ion-app>
+
+  <!-- Main App Script -->
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
