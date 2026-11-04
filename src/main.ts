@@ -429,18 +429,34 @@ class WorldTopNewsApp {
 
         <div class="policy-box">
           <h3 style="font-weight: 700; display: flex; align-items: center; gap: 8px; margin-top: 0;">
-            <ion-icon name="shield-checkmark-outline" color="primary" style="font-size: 22px;"></ion-icon>
-            Privacy Policy & PWA Security
+            <ion-icon name="newspaper-outline" color="primary" style="font-size: 22px;"></ion-icon>
+            Google Play News Policy & Ownership Disclosure
           </h3>
           <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-sub);">
-            <b>World Top News</b> respects your privacy. No personal records, device identifiers, or tracking cookies are collected or shared.
-            Bookmarks and settings remain 100% stored in local encrypted device storage.
+            <b>World Top News</b> is a curated live global news aggregation service. All headlines, article descriptions, and metadata are aggregated live via accredited international publisher syndication feeds and <b>NewsData.io API</b>.
           </p>
           <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-sub);">
-            Stories are fetched live via NewsData.io. When opening full articles, content is viewed inside a sandboxed secure browser frame.
+            <b>Editorial & Content Sourcing Policy:</b>
+            World Top News does not claim copyright ownership over third-party publisher content. When readers tap "Read Story", full articles safely open directly on the publisher's official secure website in a sandboxed browser frame.
+          </p>
+          <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-sub);">
+            <b>Publisher Inquiries, Copyright & Corrections:</b><br/>
+            Developer & Publisher: <b>Tech Monk - Kapil</b><br/>
+            Editorial Contact Email: <a href="mailto:raghuwanshi.kapil@gmail.com" style="color: var(--ion-color-primary); font-weight: 600;">raghuwanshi.kapil@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="policy-box">
+          <h3 style="font-weight: 700; display: flex; align-items: center; gap: 8px; margin-top: 0;">
+            <ion-icon name="shield-checkmark-outline" color="primary" style="font-size: 22px;"></ion-icon>
+            Privacy Policy & Data Safety
+          </h3>
+          <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-sub);">
+            World Top News does not collect, transmit, or monetize personal user data, contacts, or location records.
+            All bookmarks and user preferences remain 100% stored on-device in secure local storage.
           </p>
           <p style="font-size: 12px; color: #94a3b8; margin-bottom: 0;">
-            PWA Compliant | Service Worker Enabled | Google Play Program Policy Certified.
+            Target API Level: 35 (Android 15) | Complies with Google Play Developer Program & News Policies.
           </p>
         </div>
       </div>
