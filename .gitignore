@@ -44,3 +44,5 @@ UserInterfaceState.xcuserstate
 *.keystore
 *.aab
 *.apk
+*.pem
+*.properties
