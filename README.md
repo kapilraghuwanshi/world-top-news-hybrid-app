@@ -30,3 +30,4 @@ Click on the below link to watch the real time working app on Youtube-
 * <b>Enjoy</b> all external links in the In-App-Browser(within the app). 📲
 * Targeting - Android 8.0 Oreo.8️⃣
 * Built on Cross Platform Hybrid App Technologies.
+- [CleanSlate](https://github.com/devshield-tech/botox-android) - Remotely wipe your Android device if it is lost or stolen.
